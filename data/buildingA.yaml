@@ -1,0 +1,6073 @@
+id: https://www.sbco.or.jp/ont/building/buildingA
+name: buildingA
+title: Buildinga Data Model
+description: Smart Building data model for buildingA
+default_prefix: buildinga
+default_range: string
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rec: https://w3id.org/rec/
+  sbco: https://www.sbco.or.jp/ont/
+  brick: https://brickschema.org/schema/Brick#
+  buildinga: https://www.sbco.or.jp/ont/building/buildingA/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+imports:
+- https://www.sbco.or.jp/ont/schema
+data:
+  Site:
+    site_tokyo_001:
+      name: 東京第1サイト
+      description: 東京第1サイト - corporate_headquarters
+      identifiers:
+      - key: site_code
+        value: TKY-001
+      - key: postal_code
+        value: 100-0001
+      customTags:
+      - key: main_site
+        flag: true
+      - key: urban_location
+        flag: true
+      customProperties:
+      - key: location
+        entries:
+        - key: prefecture
+          value: 東京都
+        - key: city
+          value: 千代田区
+        - key: address
+          value: 千代田区丸の内1-1-1
+      - key: site_info
+        entries:
+        - key: established_year
+          value: '2020'
+        - key: total_area
+          value: '5000'
+        - key: site_type
+          value: corporate_headquarters
+      hasPart:
+      - building_A
+  Building:
+    building_A:
+      name: Aビル
+      description: 3階建てのoffice
+      identifiers:
+      - key: building_code
+        value: BLD-A
+      - key: building_permit
+        value: BP-2019-001
+      customTags:
+      - key: smart_building
+        flag: true
+      - key: energy_efficient
+        flag: true
+      customProperties:
+      - key: building_info
+        entries:
+        - key: construction_year
+          value: '2020'
+        - key: total_floors
+          value: '3'
+        - key: gross_floor_area
+          value: '3000'
+        - key: building_type
+          value: office
+      - key: certifications
+        entries:
+        - key: leed_rating
+          value: Gold
+        - key: bels_rating
+          value: 5_star
+      hasPart:
+      - level_1F
+      - level_2F
+      - level_3F
+      isPartOf: site_tokyo_001
+  Level:
+    level_1F:
+      name: 1階
+      description: mixed_officeフロア（1階）
+      levelNumber: 1
+      identifiers:
+      - key: floor_code
+        value: L1
+      - key: floor_designation
+        value: 1F
+      customProperties:
+      - key: level_info
+        entries:
+        - key: floor_area
+          value: '1000'
+        - key: ceiling_height
+          value: '2.7'
+        - key: room_count
+          value: '6'
+        - key: usage_type
+          value: mixed_office
+      hasPart:
+      - room_101
+      - room_102
+      - room_103
+      - room_104
+      - room_105
+      - room_106
+      isPartOf: building_A
+    level_2F:
+      name: 2階
+      description: officeフロア（2階）
+      levelNumber: 2
+      identifiers:
+      - key: floor_code
+        value: L2
+      - key: floor_designation
+        value: 2F
+      customProperties:
+      - key: level_info
+        entries:
+        - key: floor_area
+          value: '1000'
+        - key: ceiling_height
+          value: '2.7'
+        - key: room_count
+          value: '5'
+        - key: usage_type
+          value: office
+      hasPart:
+      - room_201
+      - room_202
+      - room_203
+      - room_204
+      - room_205
+      isPartOf: building_A
+    level_3F:
+      name: 3階
+      description: executiveフロア（3階）
+      levelNumber: 3
+      identifiers:
+      - key: floor_code
+        value: L3
+      - key: floor_designation
+        value: 3F
+      customProperties:
+      - key: level_info
+        entries:
+        - key: floor_area
+          value: '1000'
+        - key: ceiling_height
+          value: '2.7'
+        - key: room_count
+          value: '4'
+        - key: usage_type
+          value: executive
+      hasPart:
+      - room_301
+      - room_302
+      - room_303
+      - room_304
+      isPartOf: building_A
+  Space:
+    room_101:
+      name: 会議室101
+      description: 12名収容可能な会議室
+      identifiers:
+      - key: room_number
+        value: '101'
+      - key: room_code
+        value: CONF-101
+      customTags:
+      - key: meeting_room
+        flag: true
+      - key: av_equipped
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '50'
+        - key: capacity
+          value: '12'
+        - key: usage
+          value: 会議室
+        - key: occupancy_type
+          value: meeting
+      isLocationOf:
+      - pac_001
+      - lighting_001
+      - lighting_002
+      - sensor_001
+      - sensor_002
+      isPartOf: level_1F
+    room_102:
+      name: 事務室102
+      description: 20名収容可能な事務室
+      identifiers:
+      - key: room_number
+        value: '102'
+      - key: room_code
+        value: OFF-102
+      customTags:
+      - key: office_space
+        flag: true
+      - key: open_office
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '120'
+        - key: capacity
+          value: '20'
+        - key: usage
+          value: 事務室
+        - key: occupancy_type
+          value: office
+      isLocationOf:
+      - pac_002
+      - pac_003
+      - lighting_003
+      - lighting_004
+      - lighting_005
+      - sensor_003
+      - sensor_004
+      - sensor_005
+      isPartOf: level_1F
+    room_103:
+      name: 受付103
+      description: 5名収容可能な受付
+      identifiers:
+      - key: room_number
+        value: '103'
+      - key: room_code
+        value: REC-103
+      customTags:
+      - key: reception
+        flag: true
+      - key: public_access
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '30'
+        - key: capacity
+          value: '5'
+        - key: usage
+          value: 受付
+        - key: occupancy_type
+          value: reception
+      isLocationOf:
+      - lighting_006
+      - sensor_006
+      isPartOf: level_1F
+    room_104:
+      name: 倉庫104
+      description: 2名収容可能な倉庫
+      identifiers:
+      - key: room_number
+        value: '104'
+      - key: room_code
+        value: STO-104
+      customTags:
+      - key: storage
+        flag: true
+      - key: restricted_access
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '40'
+        - key: capacity
+          value: '2'
+        - key: usage
+          value: 倉庫
+        - key: occupancy_type
+          value: storage
+      isLocationOf:
+      - lighting_007
+      - sensor_007
+      isPartOf: level_1F
+    room_105:
+      name: サーバー室105
+      description: 3名収容可能なサーバー室
+      identifiers:
+      - key: room_number
+        value: '105'
+      - key: room_code
+        value: SRV-105
+      customTags:
+      - key: server_room
+        flag: true
+      - key: critical_facility
+        flag: true
+      - key: 24x7_operation
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '60'
+        - key: capacity
+          value: '3'
+        - key: usage
+          value: サーバー室
+        - key: occupancy_type
+          value: technical
+      - key: environmental_requirements
+        entries:
+        - key: temperature_range
+          value: 20-24
+        - key: humidity_range
+          value: 40-60
+        - key: redundancy_level
+          value: N+1
+      isLocationOf:
+      - pac_004
+      - pac_005
+      - lighting_008
+      - sensor_008
+      - sensor_009
+      - sensor_010
+      - sensor_011
+      isPartOf: level_1F
+    room_106:
+      name: 休憩室106
+      description: 15名収容可能な休憩室
+      identifiers:
+      - key: room_number
+        value: '106'
+      - key: room_code
+        value: BRK-106
+      customTags:
+      - key: break_room
+        flag: true
+      - key: common_area
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '45'
+        - key: capacity
+          value: '15'
+        - key: usage
+          value: 休憩室
+        - key: occupancy_type
+          value: break
+      isLocationOf:
+      - pac_006
+      - lighting_009
+      - sensor_012
+      - sensor_013
+      isPartOf: level_1F
+    room_201:
+      name: 大会議室201
+      description: 30名収容可能な大会議室
+      identifiers:
+      - key: room_number
+        value: '201'
+      - key: room_code
+        value: LCONF-201
+      customTags:
+      - key: large_meeting_room
+        flag: true
+      - key: presentation_room
+        flag: true
+      - key: av_equipped
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '150'
+        - key: capacity
+          value: '30'
+        - key: usage
+          value: 大会議室
+        - key: occupancy_type
+          value: meeting
+      isLocationOf:
+      - pac_007
+      - pac_008
+      - pac_009
+      - lighting_010
+      - lighting_011
+      - lighting_012
+      - sensor_014
+      - sensor_015
+      - sensor_016
+      isPartOf: level_2F
+    room_202:
+      name: 事務室202
+      description: 15名収容可能な事務室
+      identifiers:
+      - key: room_number
+        value: '202'
+      - key: room_code
+        value: OFF-202
+      customTags:
+      - key: office_space
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '80'
+        - key: capacity
+          value: '15'
+        - key: usage
+          value: 事務室
+        - key: occupancy_type
+          value: office
+      isLocationOf:
+      - pac_010
+      - lighting_013
+      - lighting_014
+      - sensor_017
+      - sensor_018
+      isPartOf: level_2F
+    room_203:
+      name: 事務室203
+      description: 15名収容可能な事務室
+      identifiers:
+      - key: room_number
+        value: '203'
+      - key: room_code
+        value: OFF-203
+      customTags:
+      - key: office_space
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '80'
+        - key: capacity
+          value: '15'
+        - key: usage
+          value: 事務室
+        - key: occupancy_type
+          value: office
+      isLocationOf:
+      - pac_011
+      - lighting_015
+      - lighting_016
+      - sensor_019
+      - sensor_020
+      isPartOf: level_2F
+    room_204:
+      name: 応接室204
+      description: 8名収容可能な応接室
+      identifiers:
+      - key: room_number
+        value: '204'
+      - key: room_code
+        value: VIP-204
+      customTags:
+      - key: vip_room
+        flag: true
+      - key: formal_meeting
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '40'
+        - key: capacity
+          value: '8'
+        - key: usage
+          value: 応接室
+        - key: occupancy_type
+          value: meeting
+      isLocationOf:
+      - pac_012
+      - lighting_017
+      - lighting_018
+      - sensor_021
+      - sensor_022
+      isPartOf: level_2F
+    room_205:
+      name: 資料室205
+      description: 3名収容可能な資料室
+      identifiers:
+      - key: room_number
+        value: '205'
+      - key: room_code
+        value: ARC-205
+      customTags:
+      - key: archive_room
+        flag: true
+      - key: restricted_access
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '35'
+        - key: capacity
+          value: '3'
+        - key: usage
+          value: 資料室
+        - key: occupancy_type
+          value: storage
+      isLocationOf:
+      - lighting_019
+      - sensor_023
+      - sensor_024
+      isPartOf: level_2F
+    room_301:
+      name: 役員室301
+      description: 5名収容可能な役員室
+      identifiers:
+      - key: room_number
+        value: '301'
+      - key: room_code
+        value: EXEC-301
+      customTags:
+      - key: executive_office
+        flag: true
+      - key: private_office
+        flag: true
+      - key: high_security
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '60'
+        - key: capacity
+          value: '5'
+        - key: usage
+          value: 役員室
+        - key: occupancy_type
+          value: executive
+      isLocationOf:
+      - pac_013
+      - lighting_020
+      - lighting_021
+      - lighting_022
+      - sensor_025
+      - sensor_026
+      isPartOf: level_3F
+    room_302:
+      name: 秘書室302
+      description: 3名収容可能な秘書室
+      identifiers:
+      - key: room_number
+        value: '302'
+      - key: room_code
+        value: SEC-302
+      customTags:
+      - key: secretary_office
+        flag: true
+      - key: support_office
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '25'
+        - key: capacity
+          value: '3'
+        - key: usage
+          value: 秘書室
+        - key: occupancy_type
+          value: office
+      isLocationOf:
+      - pac_014
+      - lighting_023
+      - sensor_027
+      isPartOf: level_3F
+    room_303:
+      name: 会議室303
+      description: 10名収容可能な会議室
+      identifiers:
+      - key: room_number
+        value: '303'
+      - key: room_code
+        value: CONF-303
+      customTags:
+      - key: meeting_room
+        flag: true
+      - key: executive_meeting
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '45'
+        - key: capacity
+          value: '10'
+        - key: usage
+          value: 会議室
+        - key: occupancy_type
+          value: meeting
+      isLocationOf:
+      - pac_015
+      - lighting_024
+      - lighting_025
+      - sensor_028
+      - sensor_029
+      isPartOf: level_3F
+    room_304:
+      name: ラウンジ304
+      description: 20名収容可能なラウンジ
+      identifiers:
+      - key: room_number
+        value: '304'
+      - key: room_code
+        value: LNG-304
+      customTags:
+      - key: lounge
+        flag: true
+      - key: common_area
+        flag: true
+      - key: relaxation_space
+        flag: true
+      customProperties:
+      - key: room_info
+        entries:
+        - key: area
+          value: '70'
+        - key: capacity
+          value: '20'
+        - key: usage
+          value: ラウンジ
+        - key: occupancy_type
+          value: common
+      isLocationOf:
+      - lighting_026
+      - lighting_027
+      - sensor_030
+      - sensor_031
+      - sensor_032
+      isPartOf: level_3F
+  EquipmentExt:
+    pac_001:
+      name: 会議室101 PackageAirConditioner 001
+      description: 会議室101に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_001
+      - key: asset_tag
+        value: AC-1F-101-001
+      hasPoint:
+      - pac_001_power
+      - pac_001_mode
+      - pac_001_setpoint_temp
+      - pac_001_return_temp
+      - pac_001_status
+      locatedIn: room_101
+      customProperties: &id003
+      - key: manufacturer
+        entries:
+        - key: name
+          value: 空調メーカーA社
+      - key: specifications
+        entries:
+        - key: cooling_capacity
+          value: 2.8kW
+        - key: heating_capacity
+          value: 3.2kW
+        - key: rated_power_consumption
+          value: 0.8kW
+        - key: voltage
+          value: 単相200V
+      - key: point_configuration
+        entries:
+        - key: total_points
+          value: '5'
+        - key: command_points
+          value: '2'
+        - key: setpoint_points
+          value: '1'
+        - key: measurement_points
+          value: '1'
+        - key: status_points
+          value: '1'
+      customTags: &id004
+      - key: is_template
+        flag: true
+    lighting_001:
+      name: 会議室101 LightingFixture 001
+      description: 会議室101に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_001
+      - key: asset_tag
+        value: LT-1F-101-001
+      hasPoint:
+      - lighting_001_switch
+      - lighting_001_dimmer
+      - lighting_001_status
+      locatedIn: room_101
+      customProperties: &id001
+      - key: manufacturer
+        entries:
+        - key: name
+          value: 照明メーカーB社
+      - key: specifications
+        entries:
+        - key: power_consumption
+          value: 40W
+        - key: luminous_flux
+          value: 4000lm
+        - key: color_temperature
+          value: 5000K
+      - key: point_configuration
+        entries:
+        - key: total_points
+          value: '3'
+      customTags: &id002
+      - key: is_template
+        flag: true
+    lighting_002:
+      name: 会議室101 LightingFixture 002
+      description: 会議室101に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_002
+      - key: asset_tag
+        value: LT-1F-101-002
+      hasPoint:
+      - lighting_002_switch
+      - lighting_002_dimmer
+      - lighting_002_status
+      locatedIn: room_101
+      customProperties: *id001
+      customTags: *id002
+    sensor_001:
+      name: 会議室101 EnvironmentalSensor 001
+      description: 会議室101に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_001
+      - key: asset_tag
+        value: SE-1F-101-001
+      hasPoint:
+      - sensor_001_temp
+      - sensor_001_humidity
+      - sensor_001_co2
+      - sensor_001_status
+      locatedIn: room_101
+      customProperties: &id005
+      - key: manufacturer
+        entries:
+        - key: name
+          value: センサーメーカーC社
+      - key: specifications
+        entries:
+        - key: power_supply
+          value: PoE
+        - key: communication
+          value: Modbus TCP
+        - key: measurement_interval
+          value: 10s
+      - key: point_configuration
+        entries:
+        - key: total_points
+          value: '4'
+        - key: measurement_points
+          value: '3'
+        - key: status_points
+          value: '1'
+      customTags: &id006
+      - key: is_template
+        flag: true
+    sensor_002:
+      name: 会議室101 EnvironmentalSensor 002
+      description: 会議室101に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_002
+      - key: asset_tag
+        value: SE-1F-101-002
+      hasPoint:
+      - sensor_002_temp
+      - sensor_002_status
+      locatedIn: room_101
+      customProperties: &id007
+      - key: manufacturer
+        entries:
+        - key: name
+          value: センサーメーカーC社
+        - key: country
+          value: Japan
+      - key: specifications
+        entries:
+        - key: sensor_type
+          value: thermistor
+        - key: measurement_range
+          value: -40°C to +85°C
+        - key: accuracy
+          value: ±0.5°C
+        - key: resolution
+          value: 0.1°C
+        - key: response_time
+          value: 30s
+        - key: power_supply
+          value: 3.6V lithium battery
+        - key: battery_life
+          value: 5 years
+        - key: communication
+          value: LoRaWAN
+        - key: transmission_interval
+          value: 10min
+        - key: operating_temperature
+          value: -20°C to +60°C
+        - key: operating_humidity
+          value: 0-95%RH
+        - key: ip_rating
+          value: IP65
+        - key: dimensions
+          value: 80x60x25mm
+        - key: weight
+          value: 120g
+      - key: point_configuration
+        entries:
+        - key: total_points
+          value: '2'
+        - key: measurement_points
+          value: '1'
+        - key: status_points
+          value: '1'
+      - key: wireless_info
+        entries:
+        - key: frequency
+          value: 920MHz
+        - key: transmission_power
+          value: 20mW
+        - key: range_indoor
+          value: 100m
+        - key: range_outdoor
+          value: 1km
+      - key: installation
+        entries:
+        - key: mounting_type
+          value: wall_mount
+        - key: mounting_height
+          value: 1.5-2.0m
+        - key: avoid_direct_sunlight
+          value: true
+      customTags: &id008
+      - key: is_template
+        flag: true
+      - key: wireless
+        flag: true
+    pac_002:
+      name: 事務室102 PackageAirConditioner 002
+      description: 事務室102に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_002
+      - key: asset_tag
+        value: AC-1F-102-002
+      hasPoint:
+      - pac_002_power
+      - pac_002_mode
+      - pac_002_setpoint_temp
+      - pac_002_return_temp
+      - pac_002_status
+      locatedIn: room_102
+      customProperties: *id003
+      customTags: *id004
+    pac_003:
+      name: 事務室102 PackageAirConditioner 003
+      description: 事務室102に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_003
+      - key: asset_tag
+        value: AC-1F-102-003
+      hasPoint:
+      - pac_003_power
+      - pac_003_mode
+      - pac_003_setpoint_temp
+      - pac_003_return_temp
+      - pac_003_status
+      locatedIn: room_102
+      customProperties: *id003
+      customTags: *id004
+    lighting_003:
+      name: 事務室102 LightingFixture 003
+      description: 事務室102に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_003
+      - key: asset_tag
+        value: LT-1F-102-003
+      hasPoint:
+      - lighting_003_switch
+      - lighting_003_dimmer
+      - lighting_003_status
+      locatedIn: room_102
+      customProperties: *id001
+      customTags: *id002
+    lighting_004:
+      name: 事務室102 LightingFixture 004
+      description: 事務室102に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_004
+      - key: asset_tag
+        value: LT-1F-102-004
+      hasPoint:
+      - lighting_004_switch
+      - lighting_004_dimmer
+      - lighting_004_status
+      locatedIn: room_102
+      customProperties: *id001
+      customTags: *id002
+    lighting_005:
+      name: 事務室102 LightingFixture 005
+      description: 事務室102に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_005
+      - key: asset_tag
+        value: LT-1F-102-005
+      hasPoint:
+      - lighting_005_switch
+      - lighting_005_dimmer
+      - lighting_005_status
+      locatedIn: room_102
+      customProperties: *id001
+      customTags: *id002
+    sensor_003:
+      name: 事務室102 EnvironmentalSensor 003
+      description: 事務室102に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_003
+      - key: asset_tag
+        value: SE-1F-102-003
+      hasPoint:
+      - sensor_003_temp
+      - sensor_003_humidity
+      - sensor_003_co2
+      - sensor_003_status
+      locatedIn: room_102
+      customProperties: *id005
+      customTags: *id006
+    sensor_004:
+      name: 事務室102 EnvironmentalSensor 004
+      description: 事務室102に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_004
+      - key: asset_tag
+        value: SE-1F-102-004
+      hasPoint:
+      - sensor_004_temp
+      - sensor_004_humidity
+      - sensor_004_co2
+      - sensor_004_status
+      locatedIn: room_102
+      customProperties: *id005
+      customTags: *id006
+    sensor_005:
+      name: 事務室102 EnvironmentalSensor 005
+      description: 事務室102に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_005
+      - key: asset_tag
+        value: SE-1F-102-005
+      hasPoint:
+      - sensor_005_temp
+      - sensor_005_status
+      locatedIn: room_102
+      customProperties: *id007
+      customTags: *id008
+    lighting_006:
+      name: 受付103 LightingFixture 006
+      description: 受付103に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_006
+      - key: asset_tag
+        value: LT-1F-103-006
+      hasPoint:
+      - lighting_006_switch
+      - lighting_006_dimmer
+      - lighting_006_status
+      locatedIn: room_103
+      customProperties: *id001
+      customTags: *id002
+    sensor_006:
+      name: 受付103 EnvironmentalSensor 006
+      description: 受付103に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_006
+      - key: asset_tag
+        value: SE-1F-103-006
+      hasPoint:
+      - sensor_006_temp
+      - sensor_006_humidity
+      - sensor_006_co2
+      - sensor_006_status
+      locatedIn: room_103
+      customProperties: *id005
+      customTags: *id006
+    lighting_007:
+      name: 倉庫104 LightingFixture 007
+      description: 倉庫104に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_007
+      - key: asset_tag
+        value: LT-1F-104-007
+      hasPoint:
+      - lighting_007_switch
+      - lighting_007_status
+      locatedIn: room_104
+      customProperties: *id001
+      customTags: *id002
+    sensor_007:
+      name: 倉庫104 EnvironmentalSensor 007
+      description: 倉庫104に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_007
+      - key: asset_tag
+        value: SE-1F-104-007
+      hasPoint:
+      - sensor_007_temp
+      - sensor_007_status
+      locatedIn: room_104
+      customProperties: *id007
+      customTags: *id008
+    pac_004:
+      name: サーバー室105 PackageAirConditioner 004
+      description: サーバー室105に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_004
+      - key: asset_tag
+        value: AC-1F-105-004
+      hasPoint:
+      - pac_004_power
+      - pac_004_mode
+      - pac_004_setpoint_temp
+      - pac_004_return_temp
+      - pac_004_status
+      locatedIn: room_105
+      customProperties: *id003
+      customTags: *id004
+    pac_005:
+      name: サーバー室105 PackageAirConditioner 005
+      description: サーバー室105に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_005
+      - key: asset_tag
+        value: AC-1F-105-005
+      hasPoint:
+      - pac_005_power
+      - pac_005_mode
+      - pac_005_setpoint_temp
+      - pac_005_return_temp
+      - pac_005_status
+      locatedIn: room_105
+      customProperties: *id003
+      customTags: *id004
+    lighting_008:
+      name: サーバー室105 LightingFixture 008
+      description: サーバー室105に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_008
+      - key: asset_tag
+        value: LT-1F-105-008
+      hasPoint:
+      - lighting_008_switch
+      - lighting_008_status
+      locatedIn: room_105
+      customProperties: *id001
+      customTags: *id002
+    sensor_008:
+      name: サーバー室105 EnvironmentalSensor 008
+      description: サーバー室105に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_008
+      - key: asset_tag
+        value: SE-1F-105-008
+      hasPoint:
+      - sensor_008_temp
+      - sensor_008_humidity
+      - sensor_008_co2
+      - sensor_008_status
+      locatedIn: room_105
+      customProperties: *id005
+      customTags: *id006
+    sensor_009:
+      name: サーバー室105 EnvironmentalSensor 009
+      description: サーバー室105に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_009
+      - key: asset_tag
+        value: SE-1F-105-009
+      hasPoint:
+      - sensor_009_temp
+      - sensor_009_status
+      locatedIn: room_105
+      customProperties: *id007
+      customTags: *id008
+    sensor_010:
+      name: サーバー室105 EnvironmentalSensor 010
+      description: サーバー室105に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_010
+      - key: asset_tag
+        value: SE-1F-105-010
+      hasPoint:
+      - sensor_010_temp
+      - sensor_010_status
+      locatedIn: room_105
+      customProperties: *id007
+      customTags: *id008
+    sensor_011:
+      name: サーバー室105 EnvironmentalSensor 011
+      description: サーバー室105に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_011
+      - key: asset_tag
+        value: SE-1F-105-011
+      hasPoint:
+      - sensor_011_temp
+      - sensor_011_status
+      locatedIn: room_105
+      customProperties: *id007
+      customTags: *id008
+    pac_006:
+      name: 休憩室106 PackageAirConditioner 006
+      description: 休憩室106に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_006
+      - key: asset_tag
+        value: AC-1F-106-006
+      hasPoint:
+      - pac_006_power
+      - pac_006_mode
+      - pac_006_setpoint_temp
+      - pac_006_return_temp
+      - pac_006_status
+      locatedIn: room_106
+      customProperties: *id003
+      customTags: *id004
+    lighting_009:
+      name: 休憩室106 LightingFixture 009
+      description: 休憩室106に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_009
+      - key: asset_tag
+        value: LT-1F-106-009
+      hasPoint:
+      - lighting_009_switch
+      - lighting_009_dimmer
+      - lighting_009_status
+      locatedIn: room_106
+      customProperties: *id001
+      customTags: *id002
+    sensor_012:
+      name: 休憩室106 EnvironmentalSensor 012
+      description: 休憩室106に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_012
+      - key: asset_tag
+        value: SE-1F-106-012
+      hasPoint:
+      - sensor_012_temp
+      - sensor_012_humidity
+      - sensor_012_co2
+      - sensor_012_status
+      locatedIn: room_106
+      customProperties: *id005
+      customTags: *id006
+    sensor_013:
+      name: 休憩室106 EnvironmentalSensor 013
+      description: 休憩室106に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_013
+      - key: asset_tag
+        value: SE-1F-106-013
+      hasPoint:
+      - sensor_013_temp
+      - sensor_013_status
+      locatedIn: room_106
+      customProperties: *id007
+      customTags: *id008
+    pac_007:
+      name: 大会議室201 PackageAirConditioner 007
+      description: 大会議室201に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_56GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_007
+      - key: asset_tag
+        value: AC-2F-201-007
+      hasPoint:
+      - pac_007_power
+      - pac_007_mode
+      - pac_007_setpoint_temp
+      - pac_007_return_temp
+      - pac_007_status
+      locatedIn: room_201
+      customProperties: &id009
+      - key: manufacturer
+        entries:
+        - key: name
+          value: 空調メーカーA社
+        - key: country
+          value: Japan
+      - key: specifications
+        entries:
+        - key: cooling_capacity
+          value: 5.6kW
+        - key: heating_capacity
+          value: 6.3kW
+        - key: rated_power_consumption
+          value: 1.8kW
+        - key: voltage
+          value: 単相200V
+        - key: refrigerant
+          value: R32
+        - key: noise_level
+          value: 48dB
+        - key: dimensions
+          value: 900x320x550mm
+        - key: weight
+          value: 42kg
+      - key: point_configuration
+        entries:
+        - key: total_points
+          value: '5'
+        - key: command_points
+          value: '2'
+        - key: setpoint_points
+          value: '1'
+        - key: measurement_points
+          value: '1'
+        - key: status_points
+          value: '1'
+      - key: performance
+        entries:
+        - key: cop_cooling
+          value: '3.1'
+        - key: cop_heating
+          value: '3.5'
+        - key: operating_range_cooling
+          value: -5°C to 46°C
+        - key: operating_range_heating
+          value: -15°C to 24°C
+      customTags: &id010
+      - key: is_template
+        flag: true
+    pac_008:
+      name: 大会議室201 PackageAirConditioner 008
+      description: 大会議室201に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_56GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_008
+      - key: asset_tag
+        value: AC-2F-201-008
+      hasPoint:
+      - pac_008_power
+      - pac_008_mode
+      - pac_008_setpoint_temp
+      - pac_008_return_temp
+      - pac_008_status
+      locatedIn: room_201
+      customProperties: *id009
+      customTags: *id010
+    pac_009:
+      name: 大会議室201 PackageAirConditioner 009
+      description: 大会議室201に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_56GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_009
+      - key: asset_tag
+        value: AC-2F-201-009
+      hasPoint:
+      - pac_009_power
+      - pac_009_mode
+      - pac_009_setpoint_temp
+      - pac_009_return_temp
+      - pac_009_status
+      locatedIn: room_201
+      customProperties: *id009
+      customTags: *id010
+    lighting_010:
+      name: 大会議室201 LightingFixture 010
+      description: 大会議室201に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_60W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_010
+      - key: asset_tag
+        value: LT-2F-201-010
+      hasPoint:
+      - lighting_010_switch
+      - lighting_010_dimmer
+      - lighting_010_status
+      locatedIn: room_201
+      customProperties: &id011
+      - key: manufacturer
+        entries:
+        - key: name
+          value: 照明メーカーB社
+        - key: country
+          value: Japan
+      - key: specifications
+        entries:
+        - key: power_consumption
+          value: 60W
+        - key: luminous_flux
+          value: 6000lm
+        - key: luminous_efficacy
+          value: 100lm/W
+        - key: color_temperature
+          value: 5000K
+        - key: color_rendering_index
+          value: Ra80
+        - key: beam_angle
+          value: 120°
+        - key: voltage
+          value: AC100-240V
+        - key: frequency
+          value: 50/60Hz
+        - key: dimensions
+          value: 600x600x50mm
+        - key: weight
+          value: 3.2kg
+      - key: point_configuration
+        entries:
+        - key: total_points
+          value: '3'
+        - key: command_points
+          value: '1'
+        - key: setpoint_points
+          value: '1'
+        - key: status_points
+          value: '1'
+      - key: performance
+        entries:
+        - key: rated_life
+          value: 40000h
+        - key: dimming_range
+          value: 1-100%
+        - key: power_factor
+          value: '>0.9'
+        - key: thd
+          value: <20%
+        - key: operating_temperature
+          value: -20°C to +40°C
+      customTags: &id012
+      - key: is_template
+        flag: true
+      - key: energy_efficient
+        flag: true
+    lighting_011:
+      name: 大会議室201 LightingFixture 011
+      description: 大会議室201に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_60W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_011
+      - key: asset_tag
+        value: LT-2F-201-011
+      hasPoint:
+      - lighting_011_switch
+      - lighting_011_dimmer
+      - lighting_011_status
+      locatedIn: room_201
+      customProperties: *id011
+      customTags: *id012
+    lighting_012:
+      name: 大会議室201 LightingFixture 012
+      description: 大会議室201に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_60W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_012
+      - key: asset_tag
+        value: LT-2F-201-012
+      hasPoint:
+      - lighting_012_switch
+      - lighting_012_dimmer
+      - lighting_012_status
+      locatedIn: room_201
+      customProperties: *id011
+      customTags: *id012
+    sensor_014:
+      name: 大会議室201 EnvironmentalSensor 014
+      description: 大会議室201に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_014
+      - key: asset_tag
+        value: SE-2F-201-014
+      hasPoint:
+      - sensor_014_temp
+      - sensor_014_humidity
+      - sensor_014_co2
+      - sensor_014_status
+      locatedIn: room_201
+      customProperties: *id005
+      customTags: *id006
+    sensor_015:
+      name: 大会議室201 EnvironmentalSensor 015
+      description: 大会議室201に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_015
+      - key: asset_tag
+        value: SE-2F-201-015
+      hasPoint:
+      - sensor_015_temp
+      - sensor_015_humidity
+      - sensor_015_co2
+      - sensor_015_status
+      locatedIn: room_201
+      customProperties: *id005
+      customTags: *id006
+    sensor_016:
+      name: 大会議室201 EnvironmentalSensor 016
+      description: 大会議室201に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_016
+      - key: asset_tag
+        value: SE-2F-201-016
+      hasPoint:
+      - sensor_016_temp
+      - sensor_016_status
+      locatedIn: room_201
+      customProperties: *id007
+      customTags: *id008
+    pac_010:
+      name: 事務室202 PackageAirConditioner 010
+      description: 事務室202に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_010
+      - key: asset_tag
+        value: AC-2F-202-010
+      hasPoint:
+      - pac_010_power
+      - pac_010_mode
+      - pac_010_setpoint_temp
+      - pac_010_return_temp
+      - pac_010_status
+      locatedIn: room_202
+      customProperties: *id003
+      customTags: *id004
+    lighting_013:
+      name: 事務室202 LightingFixture 013
+      description: 事務室202に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_013
+      - key: asset_tag
+        value: LT-2F-202-013
+      hasPoint:
+      - lighting_013_switch
+      - lighting_013_dimmer
+      - lighting_013_status
+      locatedIn: room_202
+      customProperties: *id001
+      customTags: *id002
+    lighting_014:
+      name: 事務室202 LightingFixture 014
+      description: 事務室202に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_014
+      - key: asset_tag
+        value: LT-2F-202-014
+      hasPoint:
+      - lighting_014_switch
+      - lighting_014_dimmer
+      - lighting_014_status
+      locatedIn: room_202
+      customProperties: *id001
+      customTags: *id002
+    sensor_017:
+      name: 事務室202 EnvironmentalSensor 017
+      description: 事務室202に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_017
+      - key: asset_tag
+        value: SE-2F-202-017
+      hasPoint:
+      - sensor_017_temp
+      - sensor_017_humidity
+      - sensor_017_co2
+      - sensor_017_status
+      locatedIn: room_202
+      customProperties: *id005
+      customTags: *id006
+    sensor_018:
+      name: 事務室202 EnvironmentalSensor 018
+      description: 事務室202に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_018
+      - key: asset_tag
+        value: SE-2F-202-018
+      hasPoint:
+      - sensor_018_temp
+      - sensor_018_status
+      locatedIn: room_202
+      customProperties: *id007
+      customTags: *id008
+    pac_011:
+      name: 事務室203 PackageAirConditioner 011
+      description: 事務室203に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_011
+      - key: asset_tag
+        value: AC-2F-203-011
+      hasPoint:
+      - pac_011_power
+      - pac_011_mode
+      - pac_011_setpoint_temp
+      - pac_011_return_temp
+      - pac_011_status
+      locatedIn: room_203
+      customProperties: *id003
+      customTags: *id004
+    lighting_015:
+      name: 事務室203 LightingFixture 015
+      description: 事務室203に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_015
+      - key: asset_tag
+        value: LT-2F-203-015
+      hasPoint:
+      - lighting_015_switch
+      - lighting_015_dimmer
+      - lighting_015_status
+      locatedIn: room_203
+      customProperties: *id001
+      customTags: *id002
+    lighting_016:
+      name: 事務室203 LightingFixture 016
+      description: 事務室203に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_016
+      - key: asset_tag
+        value: LT-2F-203-016
+      hasPoint:
+      - lighting_016_switch
+      - lighting_016_dimmer
+      - lighting_016_status
+      locatedIn: room_203
+      customProperties: *id001
+      customTags: *id002
+    sensor_019:
+      name: 事務室203 EnvironmentalSensor 019
+      description: 事務室203に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_019
+      - key: asset_tag
+        value: SE-2F-203-019
+      hasPoint:
+      - sensor_019_temp
+      - sensor_019_humidity
+      - sensor_019_co2
+      - sensor_019_status
+      locatedIn: room_203
+      customProperties: *id005
+      customTags: *id006
+    sensor_020:
+      name: 事務室203 EnvironmentalSensor 020
+      description: 事務室203に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_020
+      - key: asset_tag
+        value: SE-2F-203-020
+      hasPoint:
+      - sensor_020_temp
+      - sensor_020_status
+      locatedIn: room_203
+      customProperties: *id007
+      customTags: *id008
+    pac_012:
+      name: 応接室204 PackageAirConditioner 012
+      description: 応接室204に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_012
+      - key: asset_tag
+        value: AC-2F-204-012
+      hasPoint:
+      - pac_012_power
+      - pac_012_mode
+      - pac_012_setpoint_temp
+      - pac_012_return_temp
+      - pac_012_status
+      locatedIn: room_204
+      customProperties: *id003
+      customTags: *id004
+    lighting_017:
+      name: 応接室204 LightingFixture 017
+      description: 応接室204に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_DL_20W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_017
+      - key: asset_tag
+        value: LT-2F-204-017
+      hasPoint:
+      - lighting_017_switch
+      - lighting_017_dimmer
+      - lighting_017_status
+      locatedIn: room_204
+      customProperties: &id013
+      - key: manufacturer
+        entries:
+        - key: name
+          value: 照明メーカーB社
+        - key: country
+          value: Japan
+      - key: specifications
+        entries:
+        - key: power_consumption
+          value: 20W
+        - key: luminous_flux
+          value: 1800lm
+        - key: luminous_efficacy
+          value: 90lm/W
+        - key: color_temperature
+          value: 3000K
+        - key: color_rendering_index
+          value: Ra85
+        - key: beam_angle
+          value: 60°
+        - key: voltage
+          value: AC100-240V
+        - key: frequency
+          value: 50/60Hz
+        - key: cutout_diameter
+          value: 150mm
+        - key: fixture_depth
+          value: 120mm
+        - key: weight
+          value: 0.8kg
+      - key: point_configuration
+        entries:
+        - key: total_points
+          value: '3'
+        - key: command_points
+          value: '1'
+        - key: setpoint_points
+          value: '1'
+        - key: status_points
+          value: '1'
+      - key: performance
+        entries:
+        - key: rated_life
+          value: 40000h
+        - key: dimming_range
+          value: 5-100%
+        - key: power_factor
+          value: '>0.9'
+        - key: thd
+          value: <15%
+        - key: operating_temperature
+          value: -10°C to +40°C
+        - key: ip_rating
+          value: IP44
+      - key: installation
+        entries:
+        - key: mounting_type
+          value: recessed
+        - key: ceiling_thickness
+          value: 9-25mm
+        - key: clearance_required
+          value: 150mm
+      customTags: &id014
+      - key: is_template
+        flag: true
+      - key: recessed_type
+        flag: true
+      - key: energy_efficient
+        flag: true
+    lighting_018:
+      name: 応接室204 LightingFixture 018
+      description: 応接室204に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_DL_20W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_018
+      - key: asset_tag
+        value: LT-2F-204-018
+      hasPoint:
+      - lighting_018_switch
+      - lighting_018_dimmer
+      - lighting_018_status
+      locatedIn: room_204
+      customProperties: *id013
+      customTags: *id014
+    sensor_021:
+      name: 応接室204 EnvironmentalSensor 021
+      description: 応接室204に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_021
+      - key: asset_tag
+        value: SE-2F-204-021
+      hasPoint:
+      - sensor_021_temp
+      - sensor_021_humidity
+      - sensor_021_co2
+      - sensor_021_status
+      locatedIn: room_204
+      customProperties: *id005
+      customTags: *id006
+    sensor_022:
+      name: 応接室204 EnvironmentalSensor 022
+      description: 応接室204に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_022
+      - key: asset_tag
+        value: SE-2F-204-022
+      hasPoint:
+      - sensor_022_temp
+      - sensor_022_status
+      locatedIn: room_204
+      customProperties: *id007
+      customTags: *id008
+    lighting_019:
+      name: 資料室205 LightingFixture 019
+      description: 資料室205に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_019
+      - key: asset_tag
+        value: LT-2F-205-019
+      hasPoint:
+      - lighting_019_switch
+      - lighting_019_status
+      locatedIn: room_205
+      customProperties: *id001
+      customTags: *id002
+    sensor_023:
+      name: 資料室205 EnvironmentalSensor 023
+      description: 資料室205に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_023
+      - key: asset_tag
+        value: SE-2F-205-023
+      hasPoint:
+      - sensor_023_temp
+      - sensor_023_status
+      locatedIn: room_205
+      customProperties: *id007
+      customTags: *id008
+    sensor_024:
+      name: 資料室205 EnvironmentalSensor 024
+      description: 資料室205に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_024
+      - key: asset_tag
+        value: SE-2F-205-024
+      hasPoint:
+      - sensor_024_temp
+      - sensor_024_status
+      locatedIn: room_205
+      customProperties: *id007
+      customTags: *id008
+    pac_013:
+      name: 役員室301 PackageAirConditioner 013
+      description: 役員室301に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_013
+      - key: asset_tag
+        value: AC-3F-301-013
+      hasPoint:
+      - pac_013_power
+      - pac_013_mode
+      - pac_013_setpoint_temp
+      - pac_013_return_temp
+      - pac_013_status
+      locatedIn: room_301
+      customProperties: *id003
+      customTags: *id004
+    lighting_020:
+      name: 役員室301 LightingFixture 020
+      description: 役員室301に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_DL_20W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_020
+      - key: asset_tag
+        value: LT-3F-301-020
+      hasPoint:
+      - lighting_020_switch
+      - lighting_020_dimmer
+      - lighting_020_status
+      locatedIn: room_301
+      customProperties: *id013
+      customTags: *id014
+    lighting_021:
+      name: 役員室301 LightingFixture 021
+      description: 役員室301に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_DL_20W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_021
+      - key: asset_tag
+        value: LT-3F-301-021
+      hasPoint:
+      - lighting_021_switch
+      - lighting_021_dimmer
+      - lighting_021_status
+      locatedIn: room_301
+      customProperties: *id013
+      customTags: *id014
+    lighting_022:
+      name: 役員室301 LightingFixture 022
+      description: 役員室301に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_DL_20W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_022
+      - key: asset_tag
+        value: LT-3F-301-022
+      hasPoint:
+      - lighting_022_switch
+      - lighting_022_dimmer
+      - lighting_022_status
+      locatedIn: room_301
+      customProperties: *id013
+      customTags: *id014
+    sensor_025:
+      name: 役員室301 EnvironmentalSensor 025
+      description: 役員室301に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_025
+      - key: asset_tag
+        value: SE-3F-301-025
+      hasPoint:
+      - sensor_025_temp
+      - sensor_025_humidity
+      - sensor_025_co2
+      - sensor_025_status
+      locatedIn: room_301
+      customProperties: *id005
+      customTags: *id006
+    sensor_026:
+      name: 役員室301 EnvironmentalSensor 026
+      description: 役員室301に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_026
+      - key: asset_tag
+        value: SE-3F-301-026
+      hasPoint:
+      - sensor_026_temp
+      - sensor_026_status
+      locatedIn: room_301
+      customProperties: *id007
+      customTags: *id008
+    pac_014:
+      name: 秘書室302 PackageAirConditioner 014
+      description: 秘書室302に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_014
+      - key: asset_tag
+        value: AC-3F-302-014
+      hasPoint:
+      - pac_014_power
+      - pac_014_mode
+      - pac_014_setpoint_temp
+      - pac_014_return_temp
+      - pac_014_status
+      locatedIn: room_302
+      customProperties: *id003
+      customTags: *id004
+    lighting_023:
+      name: 秘書室302 LightingFixture 023
+      description: 秘書室302に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_023
+      - key: asset_tag
+        value: LT-3F-302-023
+      hasPoint:
+      - lighting_023_switch
+      - lighting_023_dimmer
+      - lighting_023_status
+      locatedIn: room_302
+      customProperties: *id001
+      customTags: *id002
+    sensor_027:
+      name: 秘書室302 EnvironmentalSensor 027
+      description: 秘書室302に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_027
+      - key: asset_tag
+        value: SE-3F-302-027
+      hasPoint:
+      - sensor_027_temp
+      - sensor_027_humidity
+      - sensor_027_co2
+      - sensor_027_status
+      locatedIn: room_302
+      customProperties: *id005
+      customTags: *id006
+    pac_015:
+      name: 会議室303 PackageAirConditioner 015
+      description: 会議室303に設置されたPackageAirConditioner
+      deviceType: dtmi:sbco:equipment:PackageAirConditioner:PAC_28GV:1
+      identifiers:
+      - key: equipment_id
+        value: pac_015
+      - key: asset_tag
+        value: AC-3F-303-015
+      hasPoint:
+      - pac_015_power
+      - pac_015_mode
+      - pac_015_setpoint_temp
+      - pac_015_return_temp
+      - pac_015_status
+      locatedIn: room_303
+      customProperties: *id003
+      customTags: *id004
+    lighting_024:
+      name: 会議室303 LightingFixture 024
+      description: 会議室303に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_024
+      - key: asset_tag
+        value: LT-3F-303-024
+      hasPoint:
+      - lighting_024_switch
+      - lighting_024_dimmer
+      - lighting_024_status
+      locatedIn: room_303
+      customProperties: *id001
+      customTags: *id002
+    lighting_025:
+      name: 会議室303 LightingFixture 025
+      description: 会議室303に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_025
+      - key: asset_tag
+        value: LT-3F-303-025
+      hasPoint:
+      - lighting_025_switch
+      - lighting_025_dimmer
+      - lighting_025_status
+      locatedIn: room_303
+      customProperties: *id001
+      customTags: *id002
+    sensor_028:
+      name: 会議室303 EnvironmentalSensor 028
+      description: 会議室303に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_028
+      - key: asset_tag
+        value: SE-3F-303-028
+      hasPoint:
+      - sensor_028_temp
+      - sensor_028_humidity
+      - sensor_028_co2
+      - sensor_028_status
+      locatedIn: room_303
+      customProperties: *id005
+      customTags: *id006
+    sensor_029:
+      name: 会議室303 EnvironmentalSensor 029
+      description: 会議室303に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_029
+      - key: asset_tag
+        value: SE-3F-303-029
+      hasPoint:
+      - sensor_029_temp
+      - sensor_029_status
+      locatedIn: room_303
+      customProperties: *id007
+      customTags: *id008
+    lighting_026:
+      name: ラウンジ304 LightingFixture 026
+      description: ラウンジ304に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_026
+      - key: asset_tag
+        value: LT-3F-304-026
+      hasPoint:
+      - lighting_026_switch
+      - lighting_026_dimmer
+      - lighting_026_status
+      locatedIn: room_304
+      customProperties: *id001
+      customTags: *id002
+    lighting_027:
+      name: ラウンジ304 LightingFixture 027
+      description: ラウンジ304に設置されたLightingFixture
+      deviceType: dtmi:sbco:equipment:LightingFixture:LED_PNL_40W:1
+      identifiers:
+      - key: equipment_id
+        value: lighting_027
+      - key: asset_tag
+        value: LT-3F-304-027
+      hasPoint:
+      - lighting_027_switch
+      - lighting_027_dimmer
+      - lighting_027_status
+      locatedIn: room_304
+      customProperties: *id001
+      customTags: *id002
+    sensor_030:
+      name: ラウンジ304 EnvironmentalSensor 030
+      description: ラウンジ304に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:ENV_MULTI_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_030
+      - key: asset_tag
+        value: SE-3F-304-030
+      hasPoint:
+      - sensor_030_temp
+      - sensor_030_humidity
+      - sensor_030_co2
+      - sensor_030_status
+      locatedIn: room_304
+      customProperties: *id005
+      customTags: *id006
+    sensor_031:
+      name: ラウンジ304 EnvironmentalSensor 031
+      description: ラウンジ304に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_031
+      - key: asset_tag
+        value: SE-3F-304-031
+      hasPoint:
+      - sensor_031_temp
+      - sensor_031_status
+      locatedIn: room_304
+      customProperties: *id007
+      customTags: *id008
+    sensor_032:
+      name: ラウンジ304 EnvironmentalSensor 032
+      description: ラウンジ304に設置されたEnvironmentalSensor
+      deviceType: dtmi:sbco:equipment:EnvironmentalSensor:TEMP_ONLY_01:1
+      identifiers:
+      - key: equipment_id
+        value: sensor_032
+      - key: asset_tag
+        value: SE-3F-304-032
+      hasPoint:
+      - sensor_032_temp
+      - sensor_032_status
+      locatedIn: room_304
+      customProperties: *id007
+      customTags: *id008
+  PointExt:
+    pac_001_power:
+      name: 会議室101 エアコン1 電源
+      description: 会議室101 エアコン1 電源 - switch
+      isPointOf: pac_001
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '40001'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 エアコン1 電源
+    pac_001_mode:
+      name: 会議室101 エアコン1 運転モード
+      description: 会議室101 エアコン1 運転モード - operation_mode
+      isPointOf: pac_001
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '40002'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 エアコン1 運転モード
+    pac_001_setpoint_temp:
+      name: 会議室101 エアコン1 設定温度
+      description: 会議室101 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_001
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '40003'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 エアコン1 設定温度
+    pac_001_return_temp:
+      name: 会議室101 エアコン1 吸込温度
+      description: 会議室101 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_001
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '30001'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 エアコン1 吸込温度
+    pac_001_status:
+      name: 会議室101 エアコン1 運転状態
+      description: 会議室101 エアコン1 運転状態 - operation_status
+      isPointOf: pac_001
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '10001'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 エアコン1 運転状態
+    lighting_001_switch:
+      name: 会議室101 照明1 スイッチ
+      description: 会議室101 照明1 スイッチ - light_switch
+      isPointOf: lighting_001
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO01
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 照明1 スイッチ
+    lighting_001_dimmer:
+      name: 会議室101 照明1 調光レベル
+      description: 会議室101 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_001
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO01
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 照明1 調光レベル
+    lighting_001_status:
+      name: 会議室101 照明1 点灯状態
+      description: 会議室101 照明1 点灯状態 - light_status
+      isPointOf: lighting_001
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI01
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 照明1 点灯状態
+    lighting_002_switch:
+      name: 会議室101 照明2 スイッチ
+      description: 会議室101 照明2 スイッチ - light_switch
+      isPointOf: lighting_002
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO02
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 照明2 スイッチ
+    lighting_002_dimmer:
+      name: 会議室101 照明2 調光レベル
+      description: 会議室101 照明2 調光レベル - dimmer_level
+      isPointOf: lighting_002
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO02
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 照明2 調光レベル
+    lighting_002_status:
+      name: 会議室101 照明2 点灯状態
+      description: 会議室101 照明2 点灯状態 - light_status
+      isPointOf: lighting_002
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI02
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 照明2 点灯状態
+    sensor_001_temp:
+      name: 会議室101 環境センサー1 温度
+      description: 会議室101 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_001
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '1'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 環境センサー1 温度
+    sensor_001_humidity:
+      name: 会議室101 環境センサー1 湿度
+      description: 会議室101 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_001
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '2'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 環境センサー1 湿度
+    sensor_001_co2:
+      name: 会議室101 環境センサー1 CO2濃度
+      description: 会議室101 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_001
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '3'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 環境センサー1 CO2濃度
+    sensor_001_status:
+      name: 会議室101 環境センサー1 状態
+      description: 会議室101 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_001
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '100'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 環境センサー1 状態
+    sensor_002_temp:
+      name: 会議室101 温度センサー2 温度
+      description: 会議室101 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_002
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '11'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 温度センサー2 温度
+    sensor_002_status:
+      name: 会議室101 温度センサー2 状態
+      description: 会議室101 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_002
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '110'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室101 温度センサー2 状態
+    pac_002_power:
+      name: 事務室102 エアコン1 電源
+      description: 事務室102 エアコン1 電源 - switch
+      isPointOf: pac_002
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '40101'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン1 電源
+    pac_002_mode:
+      name: 事務室102 エアコン1 運転モード
+      description: 事務室102 エアコン1 運転モード - operation_mode
+      isPointOf: pac_002
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '40102'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン1 運転モード
+    pac_002_setpoint_temp:
+      name: 事務室102 エアコン1 設定温度
+      description: 事務室102 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_002
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '40103'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン1 設定温度
+    pac_002_return_temp:
+      name: 事務室102 エアコン1 吸込温度
+      description: 事務室102 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_002
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '30101'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン1 吸込温度
+    pac_002_status:
+      name: 事務室102 エアコン1 運転状態
+      description: 事務室102 エアコン1 運転状態 - operation_status
+      isPointOf: pac_002
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '10101'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン1 運転状態
+    pac_003_power:
+      name: 事務室102 エアコン2 電源
+      description: 事務室102 エアコン2 電源 - switch
+      isPointOf: pac_003
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '40111'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン2 電源
+    pac_003_mode:
+      name: 事務室102 エアコン2 運転モード
+      description: 事務室102 エアコン2 運転モード - operation_mode
+      isPointOf: pac_003
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '40112'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン2 運転モード
+    pac_003_setpoint_temp:
+      name: 事務室102 エアコン2 設定温度
+      description: 事務室102 エアコン2 設定温度 - temperature_setpoint
+      isPointOf: pac_003
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '40113'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン2 設定温度
+    pac_003_return_temp:
+      name: 事務室102 エアコン2 吸込温度
+      description: 事務室102 エアコン2 吸込温度 - temperature_sensor
+      isPointOf: pac_003
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '30111'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン2 吸込温度
+    pac_003_status:
+      name: 事務室102 エアコン2 運転状態
+      description: 事務室102 エアコン2 運転状態 - operation_status
+      isPointOf: pac_003
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '10111'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 エアコン2 運転状態
+    lighting_003_switch:
+      name: 事務室102 照明1 スイッチ
+      description: 事務室102 照明1 スイッチ - light_switch
+      isPointOf: lighting_003
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO11
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明1 スイッチ
+    lighting_003_dimmer:
+      name: 事務室102 照明1 調光レベル
+      description: 事務室102 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_003
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO11
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明1 調光レベル
+    lighting_003_status:
+      name: 事務室102 照明1 点灯状態
+      description: 事務室102 照明1 点灯状態 - light_status
+      isPointOf: lighting_003
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI11
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明1 点灯状態
+    lighting_004_switch:
+      name: 事務室102 照明2 スイッチ
+      description: 事務室102 照明2 スイッチ - light_switch
+      isPointOf: lighting_004
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO12
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明2 スイッチ
+    lighting_004_dimmer:
+      name: 事務室102 照明2 調光レベル
+      description: 事務室102 照明2 調光レベル - dimmer_level
+      isPointOf: lighting_004
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO12
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明2 調光レベル
+    lighting_004_status:
+      name: 事務室102 照明2 点灯状態
+      description: 事務室102 照明2 点灯状態 - light_status
+      isPointOf: lighting_004
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI12
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明2 点灯状態
+    lighting_005_switch:
+      name: 事務室102 照明3 スイッチ
+      description: 事務室102 照明3 スイッチ - light_switch
+      isPointOf: lighting_005
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO13
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明3 スイッチ
+    lighting_005_dimmer:
+      name: 事務室102 照明3 調光レベル
+      description: 事務室102 照明3 調光レベル - dimmer_level
+      isPointOf: lighting_005
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO13
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明3 調光レベル
+    lighting_005_status:
+      name: 事務室102 照明3 点灯状態
+      description: 事務室102 照明3 点灯状態 - light_status
+      isPointOf: lighting_005
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI13
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 照明3 点灯状態
+    sensor_003_temp:
+      name: 事務室102 環境センサー1 温度
+      description: 事務室102 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_003
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '21'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー1 温度
+    sensor_003_humidity:
+      name: 事務室102 環境センサー1 湿度
+      description: 事務室102 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_003
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '22'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー1 湿度
+    sensor_003_co2:
+      name: 事務室102 環境センサー1 CO2濃度
+      description: 事務室102 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_003
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '23'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー1 CO2濃度
+    sensor_003_status:
+      name: 事務室102 環境センサー1 状態
+      description: 事務室102 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_003
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '120'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー1 状態
+    sensor_004_temp:
+      name: 事務室102 環境センサー2 温度
+      description: 事務室102 環境センサー2 温度 - temperature_sensor
+      isPointOf: sensor_004
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '31'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー2 温度
+    sensor_004_humidity:
+      name: 事務室102 環境センサー2 湿度
+      description: 事務室102 環境センサー2 湿度 - humidity_sensor
+      isPointOf: sensor_004
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '32'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー2 湿度
+    sensor_004_co2:
+      name: 事務室102 環境センサー2 CO2濃度
+      description: 事務室102 環境センサー2 CO2濃度 - co2_sensor
+      isPointOf: sensor_004
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '33'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー2 CO2濃度
+    sensor_004_status:
+      name: 事務室102 環境センサー2 状態
+      description: 事務室102 環境センサー2 状態 - sensor_status
+      isPointOf: sensor_004
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '130'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 環境センサー2 状態
+    sensor_005_temp:
+      name: 事務室102 温度センサー3 温度
+      description: 事務室102 温度センサー3 温度 - temperature_sensor
+      isPointOf: sensor_005
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '41'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 温度センサー3 温度
+    sensor_005_status:
+      name: 事務室102 温度センサー3 状態
+      description: 事務室102 温度センサー3 状態 - sensor_status
+      isPointOf: sensor_005
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '140'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室102 温度センサー3 状態
+    lighting_006_switch:
+      name: 受付103 照明1 スイッチ
+      description: 受付103 照明1 スイッチ - light_switch
+      isPointOf: lighting_006
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO21
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 受付103 照明1 スイッチ
+    lighting_006_dimmer:
+      name: 受付103 照明1 調光レベル
+      description: 受付103 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_006
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO21
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 受付103 照明1 調光レベル
+    lighting_006_status:
+      name: 受付103 照明1 点灯状態
+      description: 受付103 照明1 点灯状態 - light_status
+      isPointOf: lighting_006
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI21
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 受付103 照明1 点灯状態
+    sensor_006_temp:
+      name: 受付103 環境センサー1 温度
+      description: 受付103 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_006
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '51'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 受付103 環境センサー1 温度
+    sensor_006_humidity:
+      name: 受付103 環境センサー1 湿度
+      description: 受付103 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_006
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '52'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 受付103 環境センサー1 湿度
+    sensor_006_co2:
+      name: 受付103 環境センサー1 CO2濃度
+      description: 受付103 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_006
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '53'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 受付103 環境センサー1 CO2濃度
+    sensor_006_status:
+      name: 受付103 環境センサー1 状態
+      description: 受付103 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_006
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '150'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 受付103 環境センサー1 状態
+    lighting_007_switch:
+      name: 倉庫104 照明1 スイッチ
+      description: 倉庫104 照明1 スイッチ - light_switch
+      isPointOf: lighting_007
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO31
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 倉庫104 照明1 スイッチ
+    lighting_007_status:
+      name: 倉庫104 照明1 点灯状態
+      description: 倉庫104 照明1 点灯状態 - light_status
+      isPointOf: lighting_007
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI31
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 倉庫104 照明1 点灯状態
+    sensor_007_temp:
+      name: 倉庫104 温度センサー1 温度
+      description: 倉庫104 温度センサー1 温度 - temperature_sensor
+      isPointOf: sensor_007
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '61'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 倉庫104 温度センサー1 温度
+    sensor_007_status:
+      name: 倉庫104 温度センサー1 状態
+      description: 倉庫104 温度センサー1 状態 - sensor_status
+      isPointOf: sensor_007
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '160'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 倉庫104 温度センサー1 状態
+    pac_004_power:
+      name: サーバー室105 エアコン1 電源
+      description: サーバー室105 エアコン1 電源 - switch
+      isPointOf: pac_004
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '40501'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン1 電源
+    pac_004_mode:
+      name: サーバー室105 エアコン1 運転モード
+      description: サーバー室105 エアコン1 運転モード - operation_mode
+      isPointOf: pac_004
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '40502'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン1 運転モード
+    pac_004_setpoint_temp:
+      name: サーバー室105 エアコン1 設定温度
+      description: サーバー室105 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_004
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '40503'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン1 設定温度
+    pac_004_return_temp:
+      name: サーバー室105 エアコン1 吸込温度
+      description: サーバー室105 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_004
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '30501'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン1 吸込温度
+    pac_004_status:
+      name: サーバー室105 エアコン1 運転状態
+      description: サーバー室105 エアコン1 運転状態 - operation_status
+      isPointOf: pac_004
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '10501'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン1 運転状態
+    pac_005_power:
+      name: サーバー室105 エアコン2 電源
+      description: サーバー室105 エアコン2 電源 - switch
+      isPointOf: pac_005
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '40511'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン2 電源
+    pac_005_mode:
+      name: サーバー室105 エアコン2 運転モード
+      description: サーバー室105 エアコン2 運転モード - operation_mode
+      isPointOf: pac_005
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '40512'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン2 運転モード
+    pac_005_setpoint_temp:
+      name: サーバー室105 エアコン2 設定温度
+      description: サーバー室105 エアコン2 設定温度 - temperature_setpoint
+      isPointOf: pac_005
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '40513'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン2 設定温度
+    pac_005_return_temp:
+      name: サーバー室105 エアコン2 吸込温度
+      description: サーバー室105 エアコン2 吸込温度 - temperature_sensor
+      isPointOf: pac_005
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '30511'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン2 吸込温度
+    pac_005_status:
+      name: サーバー室105 エアコン2 運転状態
+      description: サーバー室105 エアコン2 運転状態 - operation_status
+      isPointOf: pac_005
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '10511'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 エアコン2 運転状態
+    lighting_008_switch:
+      name: サーバー室105 照明1 スイッチ
+      description: サーバー室105 照明1 スイッチ - light_switch
+      isPointOf: lighting_008
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO41
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 照明1 スイッチ
+    lighting_008_status:
+      name: サーバー室105 照明1 点灯状態
+      description: サーバー室105 照明1 点灯状態 - light_status
+      isPointOf: lighting_008
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI41
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 照明1 点灯状態
+    sensor_008_temp:
+      name: サーバー室105 環境センサー1 温度
+      description: サーバー室105 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_008
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '71'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 環境センサー1 温度
+    sensor_008_humidity:
+      name: サーバー室105 環境センサー1 湿度
+      description: サーバー室105 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_008
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '72'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 環境センサー1 湿度
+    sensor_008_co2:
+      name: サーバー室105 環境センサー1 CO2濃度
+      description: サーバー室105 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_008
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '73'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 環境センサー1 CO2濃度
+    sensor_008_status:
+      name: サーバー室105 環境センサー1 状態
+      description: サーバー室105 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_008
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '170'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 環境センサー1 状態
+    sensor_009_temp:
+      name: サーバー室105 温度センサー2 温度
+      description: サーバー室105 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_009
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '81'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 温度センサー2 温度
+    sensor_009_status:
+      name: サーバー室105 温度センサー2 状態
+      description: サーバー室105 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_009
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '180'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 温度センサー2 状態
+    sensor_010_temp:
+      name: サーバー室105 温度センサー3 温度
+      description: サーバー室105 温度センサー3 温度 - temperature_sensor
+      isPointOf: sensor_010
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '91'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 温度センサー3 温度
+    sensor_010_status:
+      name: サーバー室105 温度センサー3 状態
+      description: サーバー室105 温度センサー3 状態 - sensor_status
+      isPointOf: sensor_010
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '190'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 温度センサー3 状態
+    sensor_011_temp:
+      name: サーバー室105 温度センサー4 温度
+      description: サーバー室105 温度センサー4 温度 - temperature_sensor
+      isPointOf: sensor_011
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '101'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 温度センサー4 温度
+    sensor_011_status:
+      name: サーバー室105 温度センサー4 状態
+      description: サーバー室105 温度センサー4 状態 - sensor_status
+      isPointOf: sensor_011
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '200'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: サーバー室105 温度センサー4 状態
+    pac_006_power:
+      name: 休憩室106 エアコン1 電源
+      description: 休憩室106 エアコン1 電源 - switch
+      isPointOf: pac_006
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '40601'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 エアコン1 電源
+    pac_006_mode:
+      name: 休憩室106 エアコン1 運転モード
+      description: 休憩室106 エアコン1 運転モード - operation_mode
+      isPointOf: pac_006
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '40602'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 エアコン1 運転モード
+    pac_006_setpoint_temp:
+      name: 休憩室106 エアコン1 設定温度
+      description: 休憩室106 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_006
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '40603'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 エアコン1 設定温度
+    pac_006_return_temp:
+      name: 休憩室106 エアコン1 吸込温度
+      description: 休憩室106 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_006
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '30601'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 エアコン1 吸込温度
+    pac_006_status:
+      name: 休憩室106 エアコン1 運転状態
+      description: 休憩室106 エアコン1 運転状態 - operation_status
+      isPointOf: pac_006
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '10601'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 エアコン1 運転状態
+    lighting_009_switch:
+      name: 休憩室106 照明1 スイッチ
+      description: 休憩室106 照明1 スイッチ - light_switch
+      isPointOf: lighting_009
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO51
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 照明1 スイッチ
+    lighting_009_dimmer:
+      name: 休憩室106 照明1 調光レベル
+      description: 休憩室106 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_009
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO51
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 照明1 調光レベル
+    lighting_009_status:
+      name: 休憩室106 照明1 点灯状態
+      description: 休憩室106 照明1 点灯状態 - light_status
+      isPointOf: lighting_009
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI51
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 照明1 点灯状態
+    sensor_012_temp:
+      name: 休憩室106 環境センサー1 温度
+      description: 休憩室106 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_012
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '111'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 環境センサー1 温度
+    sensor_012_humidity:
+      name: 休憩室106 環境センサー1 湿度
+      description: 休憩室106 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_012
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '112'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 環境センサー1 湿度
+    sensor_012_co2:
+      name: 休憩室106 環境センサー1 CO2濃度
+      description: 休憩室106 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_012
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '113'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 環境センサー1 CO2濃度
+    sensor_012_status:
+      name: 休憩室106 環境センサー1 状態
+      description: 休憩室106 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_012
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '210'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 環境センサー1 状態
+    sensor_013_temp:
+      name: 休憩室106 温度センサー2 温度
+      description: 休憩室106 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_013
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '121'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 温度センサー2 温度
+    sensor_013_status:
+      name: 休憩室106 温度センサー2 状態
+      description: 休憩室106 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_013
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '220'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 休憩室106 温度センサー2 状態
+    pac_007_power:
+      name: 大会議室201 エアコン1 電源
+      description: 大会議室201 エアコン1 電源 - switch
+      isPointOf: pac_007
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '41001'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン1 電源
+    pac_007_mode:
+      name: 大会議室201 エアコン1 運転モード
+      description: 大会議室201 エアコン1 運転モード - operation_mode
+      isPointOf: pac_007
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '41002'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン1 運転モード
+    pac_007_setpoint_temp:
+      name: 大会議室201 エアコン1 設定温度
+      description: 大会議室201 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_007
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '41003'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン1 設定温度
+    pac_007_return_temp:
+      name: 大会議室201 エアコン1 吸込温度
+      description: 大会議室201 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_007
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '31001'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン1 吸込温度
+    pac_007_status:
+      name: 大会議室201 エアコン1 運転状態
+      description: 大会議室201 エアコン1 運転状態 - operation_status
+      isPointOf: pac_007
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '11001'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン1 運転状態
+    pac_008_power:
+      name: 大会議室201 エアコン2 電源
+      description: 大会議室201 エアコン2 電源 - switch
+      isPointOf: pac_008
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '41011'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン2 電源
+    pac_008_mode:
+      name: 大会議室201 エアコン2 運転モード
+      description: 大会議室201 エアコン2 運転モード - operation_mode
+      isPointOf: pac_008
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '41012'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン2 運転モード
+    pac_008_setpoint_temp:
+      name: 大会議室201 エアコン2 設定温度
+      description: 大会議室201 エアコン2 設定温度 - temperature_setpoint
+      isPointOf: pac_008
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '41013'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン2 設定温度
+    pac_008_return_temp:
+      name: 大会議室201 エアコン2 吸込温度
+      description: 大会議室201 エアコン2 吸込温度 - temperature_sensor
+      isPointOf: pac_008
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '31011'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン2 吸込温度
+    pac_008_status:
+      name: 大会議室201 エアコン2 運転状態
+      description: 大会議室201 エアコン2 運転状態 - operation_status
+      isPointOf: pac_008
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '11011'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン2 運転状態
+    pac_009_power:
+      name: 大会議室201 エアコン3 電源
+      description: 大会議室201 エアコン3 電源 - switch
+      isPointOf: pac_009
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '41021'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン3 電源
+    pac_009_mode:
+      name: 大会議室201 エアコン3 運転モード
+      description: 大会議室201 エアコン3 運転モード - operation_mode
+      isPointOf: pac_009
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '41022'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン3 運転モード
+    pac_009_setpoint_temp:
+      name: 大会議室201 エアコン3 設定温度
+      description: 大会議室201 エアコン3 設定温度 - temperature_setpoint
+      isPointOf: pac_009
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '41023'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン3 設定温度
+    pac_009_return_temp:
+      name: 大会議室201 エアコン3 吸込温度
+      description: 大会議室201 エアコン3 吸込温度 - temperature_sensor
+      isPointOf: pac_009
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '31021'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン3 吸込温度
+    pac_009_status:
+      name: 大会議室201 エアコン3 運転状態
+      description: 大会議室201 エアコン3 運転状態 - operation_status
+      isPointOf: pac_009
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '11021'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 エアコン3 運転状態
+    lighting_010_switch:
+      name: 大会議室201 照明1 スイッチ
+      description: 大会議室201 照明1 スイッチ - light_switch
+      isPointOf: lighting_010
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO61
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明1 スイッチ
+    lighting_010_dimmer:
+      name: 大会議室201 照明1 調光レベル
+      description: 大会議室201 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_010
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO61
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明1 調光レベル
+    lighting_010_status:
+      name: 大会議室201 照明1 点灯状態
+      description: 大会議室201 照明1 点灯状態 - light_status
+      isPointOf: lighting_010
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI61
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明1 点灯状態
+    lighting_011_switch:
+      name: 大会議室201 照明2 スイッチ
+      description: 大会議室201 照明2 スイッチ - light_switch
+      isPointOf: lighting_011
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO62
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明2 スイッチ
+    lighting_011_dimmer:
+      name: 大会議室201 照明2 調光レベル
+      description: 大会議室201 照明2 調光レベル - dimmer_level
+      isPointOf: lighting_011
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO62
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明2 調光レベル
+    lighting_011_status:
+      name: 大会議室201 照明2 点灯状態
+      description: 大会議室201 照明2 点灯状態 - light_status
+      isPointOf: lighting_011
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI62
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明2 点灯状態
+    lighting_012_switch:
+      name: 大会議室201 照明3 スイッチ
+      description: 大会議室201 照明3 スイッチ - light_switch
+      isPointOf: lighting_012
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO63
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明3 スイッチ
+    lighting_012_dimmer:
+      name: 大会議室201 照明3 調光レベル
+      description: 大会議室201 照明3 調光レベル - dimmer_level
+      isPointOf: lighting_012
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO63
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明3 調光レベル
+    lighting_012_status:
+      name: 大会議室201 照明3 点灯状態
+      description: 大会議室201 照明3 点灯状態 - light_status
+      isPointOf: lighting_012
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI63
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 照明3 点灯状態
+    sensor_014_temp:
+      name: 大会議室201 環境センサー1 温度
+      description: 大会議室201 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_014
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '301'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー1 温度
+    sensor_014_humidity:
+      name: 大会議室201 環境センサー1 湿度
+      description: 大会議室201 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_014
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '302'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー1 湿度
+    sensor_014_co2:
+      name: 大会議室201 環境センサー1 CO2濃度
+      description: 大会議室201 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_014
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '303'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー1 CO2濃度
+    sensor_014_status:
+      name: 大会議室201 環境センサー1 状態
+      description: 大会議室201 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_014
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '400'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー1 状態
+    sensor_015_temp:
+      name: 大会議室201 環境センサー2 温度
+      description: 大会議室201 環境センサー2 温度 - temperature_sensor
+      isPointOf: sensor_015
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '311'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー2 温度
+    sensor_015_humidity:
+      name: 大会議室201 環境センサー2 湿度
+      description: 大会議室201 環境センサー2 湿度 - humidity_sensor
+      isPointOf: sensor_015
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '312'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー2 湿度
+    sensor_015_co2:
+      name: 大会議室201 環境センサー2 CO2濃度
+      description: 大会議室201 環境センサー2 CO2濃度 - co2_sensor
+      isPointOf: sensor_015
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '313'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー2 CO2濃度
+    sensor_015_status:
+      name: 大会議室201 環境センサー2 状態
+      description: 大会議室201 環境センサー2 状態 - sensor_status
+      isPointOf: sensor_015
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '410'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 環境センサー2 状態
+    sensor_016_temp:
+      name: 大会議室201 温度センサー3 温度
+      description: 大会議室201 温度センサー3 温度 - temperature_sensor
+      isPointOf: sensor_016
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '321'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 温度センサー3 温度
+    sensor_016_status:
+      name: 大会議室201 温度センサー3 状態
+      description: 大会議室201 温度センサー3 状態 - sensor_status
+      isPointOf: sensor_016
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '420'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 大会議室201 温度センサー3 状態
+    pac_010_power:
+      name: 事務室202 エアコン1 電源
+      description: 事務室202 エアコン1 電源 - switch
+      isPointOf: pac_010
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '41201'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 エアコン1 電源
+    pac_010_mode:
+      name: 事務室202 エアコン1 運転モード
+      description: 事務室202 エアコン1 運転モード - operation_mode
+      isPointOf: pac_010
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '41202'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 エアコン1 運転モード
+    pac_010_setpoint_temp:
+      name: 事務室202 エアコン1 設定温度
+      description: 事務室202 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_010
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '41203'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 エアコン1 設定温度
+    pac_010_return_temp:
+      name: 事務室202 エアコン1 吸込温度
+      description: 事務室202 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_010
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '31201'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 エアコン1 吸込温度
+    pac_010_status:
+      name: 事務室202 エアコン1 運転状態
+      description: 事務室202 エアコン1 運転状態 - operation_status
+      isPointOf: pac_010
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '11201'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 エアコン1 運転状態
+    lighting_013_switch:
+      name: 事務室202 照明1 スイッチ
+      description: 事務室202 照明1 スイッチ - light_switch
+      isPointOf: lighting_013
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO71
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 照明1 スイッチ
+    lighting_013_dimmer:
+      name: 事務室202 照明1 調光レベル
+      description: 事務室202 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_013
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO71
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 照明1 調光レベル
+    lighting_013_status:
+      name: 事務室202 照明1 点灯状態
+      description: 事務室202 照明1 点灯状態 - light_status
+      isPointOf: lighting_013
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI71
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 照明1 点灯状態
+    lighting_014_switch:
+      name: 事務室202 照明2 スイッチ
+      description: 事務室202 照明2 スイッチ - light_switch
+      isPointOf: lighting_014
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO72
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 照明2 スイッチ
+    lighting_014_dimmer:
+      name: 事務室202 照明2 調光レベル
+      description: 事務室202 照明2 調光レベル - dimmer_level
+      isPointOf: lighting_014
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO72
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 照明2 調光レベル
+    lighting_014_status:
+      name: 事務室202 照明2 点灯状態
+      description: 事務室202 照明2 点灯状態 - light_status
+      isPointOf: lighting_014
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI72
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 照明2 点灯状態
+    sensor_017_temp:
+      name: 事務室202 環境センサー1 温度
+      description: 事務室202 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_017
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '331'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 環境センサー1 温度
+    sensor_017_humidity:
+      name: 事務室202 環境センサー1 湿度
+      description: 事務室202 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_017
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '332'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 環境センサー1 湿度
+    sensor_017_co2:
+      name: 事務室202 環境センサー1 CO2濃度
+      description: 事務室202 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_017
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '333'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 環境センサー1 CO2濃度
+    sensor_017_status:
+      name: 事務室202 環境センサー1 状態
+      description: 事務室202 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_017
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '430'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 環境センサー1 状態
+    sensor_018_temp:
+      name: 事務室202 温度センサー2 温度
+      description: 事務室202 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_018
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '341'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 温度センサー2 温度
+    sensor_018_status:
+      name: 事務室202 温度センサー2 状態
+      description: 事務室202 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_018
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '440'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室202 温度センサー2 状態
+    pac_011_power:
+      name: 事務室203 エアコン1 電源
+      description: 事務室203 エアコン1 電源 - switch
+      isPointOf: pac_011
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '41301'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 エアコン1 電源
+    pac_011_mode:
+      name: 事務室203 エアコン1 運転モード
+      description: 事務室203 エアコン1 運転モード - operation_mode
+      isPointOf: pac_011
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '41302'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 エアコン1 運転モード
+    pac_011_setpoint_temp:
+      name: 事務室203 エアコン1 設定温度
+      description: 事務室203 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_011
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '41303'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 エアコン1 設定温度
+    pac_011_return_temp:
+      name: 事務室203 エアコン1 吸込温度
+      description: 事務室203 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_011
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '31301'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 エアコン1 吸込温度
+    pac_011_status:
+      name: 事務室203 エアコン1 運転状態
+      description: 事務室203 エアコン1 運転状態 - operation_status
+      isPointOf: pac_011
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '11301'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 エアコン1 運転状態
+    lighting_015_switch:
+      name: 事務室203 照明1 スイッチ
+      description: 事務室203 照明1 スイッチ - light_switch
+      isPointOf: lighting_015
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO81
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 照明1 スイッチ
+    lighting_015_dimmer:
+      name: 事務室203 照明1 調光レベル
+      description: 事務室203 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_015
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO81
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 照明1 調光レベル
+    lighting_015_status:
+      name: 事務室203 照明1 点灯状態
+      description: 事務室203 照明1 点灯状態 - light_status
+      isPointOf: lighting_015
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI81
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 照明1 点灯状態
+    lighting_016_switch:
+      name: 事務室203 照明2 スイッチ
+      description: 事務室203 照明2 スイッチ - light_switch
+      isPointOf: lighting_016
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO82
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 照明2 スイッチ
+    lighting_016_dimmer:
+      name: 事務室203 照明2 調光レベル
+      description: 事務室203 照明2 調光レベル - dimmer_level
+      isPointOf: lighting_016
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO82
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 照明2 調光レベル
+    lighting_016_status:
+      name: 事務室203 照明2 点灯状態
+      description: 事務室203 照明2 点灯状態 - light_status
+      isPointOf: lighting_016
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI82
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 照明2 点灯状態
+    sensor_019_temp:
+      name: 事務室203 環境センサー1 温度
+      description: 事務室203 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_019
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '351'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 環境センサー1 温度
+    sensor_019_humidity:
+      name: 事務室203 環境センサー1 湿度
+      description: 事務室203 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_019
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '352'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 環境センサー1 湿度
+    sensor_019_co2:
+      name: 事務室203 環境センサー1 CO2濃度
+      description: 事務室203 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_019
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '353'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 環境センサー1 CO2濃度
+    sensor_019_status:
+      name: 事務室203 環境センサー1 状態
+      description: 事務室203 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_019
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '450'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 環境センサー1 状態
+    sensor_020_temp:
+      name: 事務室203 温度センサー2 温度
+      description: 事務室203 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_020
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '361'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 温度センサー2 温度
+    sensor_020_status:
+      name: 事務室203 温度センサー2 状態
+      description: 事務室203 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_020
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '460'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 事務室203 温度センサー2 状態
+    pac_012_power:
+      name: 応接室204 エアコン1 電源
+      description: 応接室204 エアコン1 電源 - switch
+      isPointOf: pac_012
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '41401'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 エアコン1 電源
+    pac_012_mode:
+      name: 応接室204 エアコン1 運転モード
+      description: 応接室204 エアコン1 運転モード - operation_mode
+      isPointOf: pac_012
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '41402'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 エアコン1 運転モード
+    pac_012_setpoint_temp:
+      name: 応接室204 エアコン1 設定温度
+      description: 応接室204 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_012
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '41403'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 エアコン1 設定温度
+    pac_012_return_temp:
+      name: 応接室204 エアコン1 吸込温度
+      description: 応接室204 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_012
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '31401'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 エアコン1 吸込温度
+    pac_012_status:
+      name: 応接室204 エアコン1 運転状態
+      description: 応接室204 エアコン1 運転状態 - operation_status
+      isPointOf: pac_012
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '11401'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 エアコン1 運転状態
+    lighting_017_switch:
+      name: 応接室204 ダウンライト1 スイッチ
+      description: 応接室204 ダウンライト1 スイッチ - light_switch
+      isPointOf: lighting_017
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO91
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 ダウンライト1 スイッチ
+    lighting_017_dimmer:
+      name: 応接室204 ダウンライト1 調光レベル
+      description: 応接室204 ダウンライト1 調光レベル - dimmer_level
+      isPointOf: lighting_017
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO91
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 ダウンライト1 調光レベル
+    lighting_017_status:
+      name: 応接室204 ダウンライト1 点灯状態
+      description: 応接室204 ダウンライト1 点灯状態 - light_status
+      isPointOf: lighting_017
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI91
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 ダウンライト1 点灯状態
+    lighting_018_switch:
+      name: 応接室204 ダウンライト2 スイッチ
+      description: 応接室204 ダウンライト2 スイッチ - light_switch
+      isPointOf: lighting_018
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO92
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 ダウンライト2 スイッチ
+    lighting_018_dimmer:
+      name: 応接室204 ダウンライト2 調光レベル
+      description: 応接室204 ダウンライト2 調光レベル - dimmer_level
+      isPointOf: lighting_018
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO92
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 ダウンライト2 調光レベル
+    lighting_018_status:
+      name: 応接室204 ダウンライト2 点灯状態
+      description: 応接室204 ダウンライト2 点灯状態 - light_status
+      isPointOf: lighting_018
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI92
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 ダウンライト2 点灯状態
+    sensor_021_temp:
+      name: 応接室204 環境センサー1 温度
+      description: 応接室204 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_021
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '371'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 環境センサー1 温度
+    sensor_021_humidity:
+      name: 応接室204 環境センサー1 湿度
+      description: 応接室204 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_021
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '372'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 環境センサー1 湿度
+    sensor_021_co2:
+      name: 応接室204 環境センサー1 CO2濃度
+      description: 応接室204 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_021
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '373'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 環境センサー1 CO2濃度
+    sensor_021_status:
+      name: 応接室204 環境センサー1 状態
+      description: 応接室204 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_021
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '470'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 環境センサー1 状態
+    sensor_022_temp:
+      name: 応接室204 温度センサー2 温度
+      description: 応接室204 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_022
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '381'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 温度センサー2 温度
+    sensor_022_status:
+      name: 応接室204 温度センサー2 状態
+      description: 応接室204 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_022
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '480'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 応接室204 温度センサー2 状態
+    lighting_019_switch:
+      name: 資料室205 照明1 スイッチ
+      description: 資料室205 照明1 スイッチ - light_switch
+      isPointOf: lighting_019
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO101
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 資料室205 照明1 スイッチ
+    lighting_019_status:
+      name: 資料室205 照明1 点灯状態
+      description: 資料室205 照明1 点灯状態 - light_status
+      isPointOf: lighting_019
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI101
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 資料室205 照明1 点灯状態
+    sensor_023_temp:
+      name: 資料室205 温度センサー1 温度
+      description: 資料室205 温度センサー1 温度 - temperature_sensor
+      isPointOf: sensor_023
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '391'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 資料室205 温度センサー1 温度
+    sensor_023_status:
+      name: 資料室205 温度センサー1 状態
+      description: 資料室205 温度センサー1 状態 - sensor_status
+      isPointOf: sensor_023
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '490'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 資料室205 温度センサー1 状態
+    sensor_024_temp:
+      name: 資料室205 温度センサー2 温度
+      description: 資料室205 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_024
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '401'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 資料室205 温度センサー2 温度
+    sensor_024_status:
+      name: 資料室205 温度センサー2 状態
+      description: 資料室205 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_024
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '500'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 資料室205 温度センサー2 状態
+    pac_013_power:
+      name: 役員室301 エアコン1 電源
+      description: 役員室301 エアコン1 電源 - switch
+      isPointOf: pac_013
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '42001'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 エアコン1 電源
+    pac_013_mode:
+      name: 役員室301 エアコン1 運転モード
+      description: 役員室301 エアコン1 運転モード - operation_mode
+      isPointOf: pac_013
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '42002'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 エアコン1 運転モード
+    pac_013_setpoint_temp:
+      name: 役員室301 エアコン1 設定温度
+      description: 役員室301 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_013
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '42003'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 エアコン1 設定温度
+    pac_013_return_temp:
+      name: 役員室301 エアコン1 吸込温度
+      description: 役員室301 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_013
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '32001'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 エアコン1 吸込温度
+    pac_013_status:
+      name: 役員室301 エアコン1 運転状態
+      description: 役員室301 エアコン1 運転状態 - operation_status
+      isPointOf: pac_013
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '12001'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 エアコン1 運転状態
+    lighting_020_switch:
+      name: 役員室301 ダウンライト1 スイッチ
+      description: 役員室301 ダウンライト1 スイッチ - light_switch
+      isPointOf: lighting_020
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO111
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト1 スイッチ
+    lighting_020_dimmer:
+      name: 役員室301 ダウンライト1 調光レベル
+      description: 役員室301 ダウンライト1 調光レベル - dimmer_level
+      isPointOf: lighting_020
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO111
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト1 調光レベル
+    lighting_020_status:
+      name: 役員室301 ダウンライト1 点灯状態
+      description: 役員室301 ダウンライト1 点灯状態 - light_status
+      isPointOf: lighting_020
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI111
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト1 点灯状態
+    lighting_021_switch:
+      name: 役員室301 ダウンライト2 スイッチ
+      description: 役員室301 ダウンライト2 スイッチ - light_switch
+      isPointOf: lighting_021
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO112
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト2 スイッチ
+    lighting_021_dimmer:
+      name: 役員室301 ダウンライト2 調光レベル
+      description: 役員室301 ダウンライト2 調光レベル - dimmer_level
+      isPointOf: lighting_021
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO112
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト2 調光レベル
+    lighting_021_status:
+      name: 役員室301 ダウンライト2 点灯状態
+      description: 役員室301 ダウンライト2 点灯状態 - light_status
+      isPointOf: lighting_021
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI112
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト2 点灯状態
+    lighting_022_switch:
+      name: 役員室301 ダウンライト3 スイッチ
+      description: 役員室301 ダウンライト3 スイッチ - light_switch
+      isPointOf: lighting_022
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO113
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト3 スイッチ
+    lighting_022_dimmer:
+      name: 役員室301 ダウンライト3 調光レベル
+      description: 役員室301 ダウンライト3 調光レベル - dimmer_level
+      isPointOf: lighting_022
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO113
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト3 調光レベル
+    lighting_022_status:
+      name: 役員室301 ダウンライト3 点灯状態
+      description: 役員室301 ダウンライト3 点灯状態 - light_status
+      isPointOf: lighting_022
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI113
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 ダウンライト3 点灯状態
+    sensor_025_temp:
+      name: 役員室301 環境センサー1 温度
+      description: 役員室301 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_025
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '501'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 環境センサー1 温度
+    sensor_025_humidity:
+      name: 役員室301 環境センサー1 湿度
+      description: 役員室301 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_025
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '502'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 環境センサー1 湿度
+    sensor_025_co2:
+      name: 役員室301 環境センサー1 CO2濃度
+      description: 役員室301 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_025
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '503'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 環境センサー1 CO2濃度
+    sensor_025_status:
+      name: 役員室301 環境センサー1 状態
+      description: 役員室301 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_025
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '600'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 環境センサー1 状態
+    sensor_026_temp:
+      name: 役員室301 温度センサー2 温度
+      description: 役員室301 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_026
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '511'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 温度センサー2 温度
+    sensor_026_status:
+      name: 役員室301 温度センサー2 状態
+      description: 役員室301 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_026
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '610'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 役員室301 温度センサー2 状態
+    pac_014_power:
+      name: 秘書室302 エアコン1 電源
+      description: 秘書室302 エアコン1 電源 - switch
+      isPointOf: pac_014
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '42101'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 エアコン1 電源
+    pac_014_mode:
+      name: 秘書室302 エアコン1 運転モード
+      description: 秘書室302 エアコン1 運転モード - operation_mode
+      isPointOf: pac_014
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '42102'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 エアコン1 運転モード
+    pac_014_setpoint_temp:
+      name: 秘書室302 エアコン1 設定温度
+      description: 秘書室302 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_014
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '42103'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 エアコン1 設定温度
+    pac_014_return_temp:
+      name: 秘書室302 エアコン1 吸込温度
+      description: 秘書室302 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_014
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '32101'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 エアコン1 吸込温度
+    pac_014_status:
+      name: 秘書室302 エアコン1 運転状態
+      description: 秘書室302 エアコン1 運転状態 - operation_status
+      isPointOf: pac_014
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '12101'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 エアコン1 運転状態
+    lighting_023_switch:
+      name: 秘書室302 照明1 スイッチ
+      description: 秘書室302 照明1 スイッチ - light_switch
+      isPointOf: lighting_023
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO121
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 照明1 スイッチ
+    lighting_023_dimmer:
+      name: 秘書室302 照明1 調光レベル
+      description: 秘書室302 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_023
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO121
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 照明1 調光レベル
+    lighting_023_status:
+      name: 秘書室302 照明1 点灯状態
+      description: 秘書室302 照明1 点灯状態 - light_status
+      isPointOf: lighting_023
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI121
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 照明1 点灯状態
+    sensor_027_temp:
+      name: 秘書室302 環境センサー1 温度
+      description: 秘書室302 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_027
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '521'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 環境センサー1 温度
+    sensor_027_humidity:
+      name: 秘書室302 環境センサー1 湿度
+      description: 秘書室302 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_027
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '522'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 環境センサー1 湿度
+    sensor_027_co2:
+      name: 秘書室302 環境センサー1 CO2濃度
+      description: 秘書室302 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_027
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '523'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 環境センサー1 CO2濃度
+    sensor_027_status:
+      name: 秘書室302 環境センサー1 状態
+      description: 秘書室302 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_027
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '620'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 秘書室302 環境センサー1 状態
+    pac_015_power:
+      name: 会議室303 エアコン1 電源
+      description: 会議室303 エアコン1 電源 - switch
+      isPointOf: pac_015
+      pointType: switch
+      identifiers:
+      - key: point_address
+        value: '42201'
+      pointSpecification: Command
+      hasQuantity: Active_Power
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 エアコン1 電源
+    pac_015_mode:
+      name: 会議室303 エアコン1 運転モード
+      description: 会議室303 エアコン1 運転モード - operation_mode
+      isPointOf: pac_015
+      pointType: operation_mode
+      identifiers:
+      - key: point_address
+        value: '42202'
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 エアコン1 運転モード
+    pac_015_setpoint_temp:
+      name: 会議室303 エアコン1 設定温度
+      description: 会議室303 エアコン1 設定温度 - temperature_setpoint
+      isPointOf: pac_015
+      pointType: temperature_setpoint
+      identifiers:
+      - key: point_address
+        value: '42203'
+      pointSpecification: Setpoint
+      hasQuantity: Temperature
+      unit: celsius
+      minPresValue: 18.0
+      maxPresValue: 30.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 エアコン1 設定温度
+    pac_015_return_temp:
+      name: 会議室303 エアコン1 吸込温度
+      description: 会議室303 エアコン1 吸込温度 - temperature_sensor
+      isPointOf: pac_015
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '32201'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 エアコン1 吸込温度
+    pac_015_status:
+      name: 会議室303 エアコン1 運転状態
+      description: 会議室303 エアコン1 運転状態 - operation_status
+      isPointOf: pac_015
+      pointType: operation_status
+      identifiers:
+      - key: point_address
+        value: '12201'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 エアコン1 運転状態
+    lighting_024_switch:
+      name: 会議室303 照明1 スイッチ
+      description: 会議室303 照明1 スイッチ - light_switch
+      isPointOf: lighting_024
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO131
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 照明1 スイッチ
+    lighting_024_dimmer:
+      name: 会議室303 照明1 調光レベル
+      description: 会議室303 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_024
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO131
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 照明1 調光レベル
+    lighting_024_status:
+      name: 会議室303 照明1 点灯状態
+      description: 会議室303 照明1 点灯状態 - light_status
+      isPointOf: lighting_024
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI131
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 照明1 点灯状態
+    lighting_025_switch:
+      name: 会議室303 照明2 スイッチ
+      description: 会議室303 照明2 スイッチ - light_switch
+      isPointOf: lighting_025
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO132
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 照明2 スイッチ
+    lighting_025_dimmer:
+      name: 会議室303 照明2 調光レベル
+      description: 会議室303 照明2 調光レベル - dimmer_level
+      isPointOf: lighting_025
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO132
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 照明2 調光レベル
+    lighting_025_status:
+      name: 会議室303 照明2 点灯状態
+      description: 会議室303 照明2 点灯状態 - light_status
+      isPointOf: lighting_025
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI132
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 照明2 点灯状態
+    sensor_028_temp:
+      name: 会議室303 環境センサー1 温度
+      description: 会議室303 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_028
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '531'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 環境センサー1 温度
+    sensor_028_humidity:
+      name: 会議室303 環境センサー1 湿度
+      description: 会議室303 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_028
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '532'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 環境センサー1 湿度
+    sensor_028_co2:
+      name: 会議室303 環境センサー1 CO2濃度
+      description: 会議室303 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_028
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '533'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 環境センサー1 CO2濃度
+    sensor_028_status:
+      name: 会議室303 環境センサー1 状態
+      description: 会議室303 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_028
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '630'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 環境センサー1 状態
+    sensor_029_temp:
+      name: 会議室303 温度センサー2 温度
+      description: 会議室303 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_029
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '541'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 温度センサー2 温度
+    sensor_029_status:
+      name: 会議室303 温度センサー2 状態
+      description: 会議室303 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_029
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '640'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: 会議室303 温度センサー2 状態
+    lighting_026_switch:
+      name: ラウンジ304 照明1 スイッチ
+      description: ラウンジ304 照明1 スイッチ - light_switch
+      isPointOf: lighting_026
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO141
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 照明1 スイッチ
+    lighting_026_dimmer:
+      name: ラウンジ304 照明1 調光レベル
+      description: ラウンジ304 照明1 調光レベル - dimmer_level
+      isPointOf: lighting_026
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO141
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 照明1 調光レベル
+    lighting_026_status:
+      name: ラウンジ304 照明1 点灯状態
+      description: ラウンジ304 照明1 点灯状態 - light_status
+      isPointOf: lighting_026
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI141
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 照明1 点灯状態
+    lighting_027_switch:
+      name: ラウンジ304 照明2 スイッチ
+      description: ラウンジ304 照明2 スイッチ - light_switch
+      isPointOf: lighting_027
+      pointType: light_switch
+      identifiers:
+      - key: point_address
+        value: DO142
+      pointSpecification: Command
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 照明2 スイッチ
+    lighting_027_dimmer:
+      name: ラウンジ304 照明2 調光レベル
+      description: ラウンジ304 照明2 調光レベル - dimmer_level
+      isPointOf: lighting_027
+      pointType: dimmer_level
+      identifiers:
+      - key: point_address
+        value: AO142
+      pointSpecification: Setpoint
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 照明2 調光レベル
+    lighting_027_status:
+      name: ラウンジ304 照明2 点灯状態
+      description: ラウンジ304 照明2 点灯状態 - light_status
+      isPointOf: lighting_027
+      pointType: light_status
+      identifiers:
+      - key: point_address
+        value: DI142
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 照明2 点灯状態
+    sensor_030_temp:
+      name: ラウンジ304 環境センサー1 温度
+      description: ラウンジ304 環境センサー1 温度 - temperature_sensor
+      isPointOf: sensor_030
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '551'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 環境センサー1 温度
+    sensor_030_humidity:
+      name: ラウンジ304 環境センサー1 湿度
+      description: ラウンジ304 環境センサー1 湿度 - humidity_sensor
+      isPointOf: sensor_030
+      pointType: humidity_sensor
+      identifiers:
+      - key: point_address
+        value: '552'
+      pointSpecification: Measurement
+      hasQuantity: Relative_Humidity
+      unit: percent
+      minPresValue: 0.0
+      maxPresValue: 100.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 環境センサー1 湿度
+    sensor_030_co2:
+      name: ラウンジ304 環境センサー1 CO2濃度
+      description: ラウンジ304 環境センサー1 CO2濃度 - co2_sensor
+      isPointOf: sensor_030
+      pointType: co2_sensor
+      identifiers:
+      - key: point_address
+        value: '553'
+      pointSpecification: Measurement
+      hasQuantity: CO2_Concentration
+      unit: ppm
+      minPresValue: 0.0
+      maxPresValue: 5000.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 環境センサー1 CO2濃度
+    sensor_030_status:
+      name: ラウンジ304 環境センサー1 状態
+      description: ラウンジ304 環境センサー1 状態 - sensor_status
+      isPointOf: sensor_030
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '650'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 環境センサー1 状態
+    sensor_031_temp:
+      name: ラウンジ304 温度センサー2 温度
+      description: ラウンジ304 温度センサー2 温度 - temperature_sensor
+      isPointOf: sensor_031
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '561'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 温度センサー2 温度
+    sensor_031_status:
+      name: ラウンジ304 温度センサー2 状態
+      description: ラウンジ304 温度センサー2 状態 - sensor_status
+      isPointOf: sensor_031
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '660'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 温度センサー2 状態
+    sensor_032_temp:
+      name: ラウンジ304 温度センサー3 温度
+      description: ラウンジ304 温度センサー3 温度 - temperature_sensor
+      isPointOf: sensor_032
+      pointType: temperature_sensor
+      identifiers:
+      - key: point_address
+        value: '571'
+      pointSpecification: Measurement
+      hasQuantity: Dry_Bulb_Temperature
+      unit: celsius
+      minPresValue: -10.0
+      maxPresValue: 50.0
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 温度センサー3 温度
+    sensor_032_status:
+      name: ラウンジ304 温度センサー3 状態
+      description: ラウンジ304 温度センサー3 状態 - sensor_status
+      isPointOf: sensor_032
+      pointType: sensor_status
+      identifiers:
+      - key: point_address
+        value: '670'
+      pointSpecification: Status
+      customProperties:
+      - key: description
+        entries:
+        - key: ja
+          value: ラウンジ304 温度センサー3 状態
