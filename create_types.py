@@ -5,46 +5,45 @@ def main():
     if not data: return
     parsed = parse_yaml_structure(data)
     
-    print("--- Step 1: Creating Component Types (Static Mode) ---")
+    print("--- Step 1: Creating Component Types ---")
 
-    # 1. 空間系の型を作成
-    spatial_types = ['Site', 'Building', 'Level', 'Space']
-    for st in spatial_types:
-        _create_type(st, {
-            'name': {'dataType': {'type': 'STRING'}},
-            'description': {'dataType': {'type': 'STRING'}}
-        })
-
-    # 2. 設備系の型を作成
-    for type_id, schema in parsed['equipment_types'].items():
-        prop_defs = {
-            'name': {'dataType': {'type': 'STRING'}},
-            'asset_tag': {'dataType': {'type': 'STRING'}}
-        }
+    # 1. 空間系 + Point型
+    # (Site, Building, Level, Space, Point)
+    for type_id, schema_defs in parsed['category_property_schema'].items():
+        # 定義が空でも Point は必ず作成する (プロパティがない場合でも型自体は必要)
+        if not schema_defs and type_id != 'Point': continue
         
-        # ポイント定義からプロパティを作成
-        for pt_name, pt_data in schema['points'].items():
-            dtype = {'type': 'STRING'}
-            spec = pt_data.get('pointSpecification', '')
-            # 数値型かどうかの簡易判定
-            if spec in ['Measurement', 'Setpoint'] or 'temp' in pt_name or 'humidity' in pt_name:
-                dtype = {'type': 'DOUBLE'}
+        print(f"Defining Type: {type_id} (Props: {len(schema_defs)})")
+        
+        prop_defs = {}
+        for prop_name, data_type in schema_defs.items():
+            prop_defs[prop_name] = {
+                'dataType': {'type': data_type},
+                'isTimeSeries': False,       # エラー回避のためFalse固定
+                'isStoredExternally': False, # エラー回避のためFalse固定
+                'isExternalId': False
+            }
             
-            # 【重要】まずは静的データとして作成（エラー回避）
-            prop_defs[pt_name] = {
-                'dataType': dtype,
-                'isTimeSeries': False,       # True -> False
-                'isStoredExternally': False, # True -> False
+        _create_type(type_id, prop_defs, is_singleton=False)
+
+    # 2. 設備系型 (pac_*, sensor_*, lighting_*)
+    for type_id, schema_defs in parsed['equipment_property_schema'].items():
+        print(f"Defining Equipment: {type_id} (Props: {len(schema_defs)})")
+        
+        prop_defs = {}
+        for prop_name, data_type in schema_defs.items():
+            prop_defs[prop_name] = {
+                'dataType': {'type': data_type},
+                'isTimeSeries': False,       # 設備プロパティは基本Static
+                'isStoredExternally': False,
                 'isExternalId': False
             }
         
-        # デバッグ: プロパティ数の確認
-        print(f"Defining Type: {type_id} (Props: {len(prop_defs)})")
-        
-        # 明示的に isSingleton=False を指定
+        # is_singleton=False を指定して「具体的(Concrete)」な型として作成
         _create_type(type_id, prop_defs, is_singleton=False)
 
 def _create_type(type_id, props, is_singleton=False):
+    """ComponentTypeを作成または更新する"""
     try:
         tm.create_component_type(
             workspaceId=WORKSPACE_ID,
@@ -54,8 +53,8 @@ def _create_type(type_id, props, is_singleton=False):
         )
         print(f"  [OK] Created: {type_id}")
     except tm.exceptions.ConflictException:
-        # 既存の場合はアップデートを試みる（プロパティ変更を反映するため）
         try:
+            # 既に存在する場合は設定を更新（プロパティ追加など）
             tm.update_component_type(
                 workspaceId=WORKSPACE_ID,
                 componentTypeId=type_id,

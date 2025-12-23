@@ -10,13 +10,16 @@ def main():
     
     # 1. Entityの削除
     # 親子関係があるため、子から順に消す必要があります。
-    # hierarchy_orderの逆順（Equipment -> Space -> ... -> Site）で処理します
+    # hierarchy_orderの逆順（Point -> Equipment -> Space -> ... -> Site）で処理
     reverse_order = parsed['order'][::-1]
     
     print("\n[1/2] Deleting Entities...")
     for category in reverse_order:
         eids = parsed['hierarchy'].get(category, [])
         if not eids: continue
+        
+        # 数が多い場合は進捗が見えるように少し工夫
+        print(f"  Deleting {category} ({len(eids)} items)...")
         
         for eid in eids:
             try:
@@ -25,26 +28,27 @@ def main():
                     entityId=eid,
                     isRecursive=True # 子要素も強制的に削除
                 )
-                print(f"  [Deleted] Entity: {eid}")
+                print(f"    [Deleted] {eid}")
             except tm.exceptions.ResourceNotFoundException:
-                print(f"  [Skip] Entity not found: {eid}")
+                print(f"    [Skip] Not found: {eid}")
             except Exception as e:
-                print(f"  [Error] Failed to delete entity {eid}: {e}")
+                print(f"    [Error] Failed to delete entity {eid}: {e}")
             
-            time.sleep(0.05)
+            time.sleep(0.05) # APIレートリミット対策
 
     # 2. Component Typeの削除
     # Entityが消えた後でないと削除できません
     print("\n[2/2] Deleting Component Types...")
     
     # 設備系
-    for type_id in parsed['equipment_types']:
+    equipment_schema = parsed.get('equipment_property_schema', {})
+    for type_id in equipment_schema:
         _delete_type(type_id)
         
-    # 空間系
-    spatial_types = ['Site', 'Building', 'Level', 'Space']
-    for st in spatial_types:
-        _delete_type(st)
+    # 空間・ポイント系 (Site, Building, Level, Space, Point)
+    category_schema = parsed.get('category_property_schema', {})
+    for type_id in category_schema:
+        _delete_type(type_id)
 
     print("\nReset completed. You can now run 01_create_types.py")
 

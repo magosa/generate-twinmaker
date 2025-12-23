@@ -8,18 +8,18 @@ def main():
     
     print("--- Step 2: Creating Entities (Skeleton) ---")
     
-    # 作成順序
-    order = ['Site', 'Building', 'Level', 'Space', 'EquipmentExt']
-    
-    for category in order:
+    # common.py で定義された順序 (parsed['order']) に従って作成
+    # 順序: Site -> Building -> Level -> Space -> EquipmentExt -> PointExt
+    for category in parsed['order']:
         eids = parsed['hierarchy'].get(category, [])
-        print(f"\nProcessing {category} ({len(eids)} items)...")
+        if not eids: continue
+        print(f"\nProcessing category: {category} ({len(eids)} items)")
         
         for eid in eids:
             entity = parsed['entities'][eid]
             parent = entity['parent_id']
             
-            # 親の存在チェックを緩和（ルート扱いにするなど）
+            # 親IDが存在しない(解析結果に含まれない)場合、$ROOTにする安全策
             if parent != '$ROOT' and parent not in parsed['entities']:
                  parent = '$ROOT'
 
@@ -34,9 +34,9 @@ def main():
             except tm.exceptions.ConflictException:
                 print(f"  [Skip] Exists: {eid}")
             except Exception as e:
-                print(f"  [Error] {eid}: {e}")
+                print(f"  [Error] Failed to create {eid}: {e}")
             
-            # API制限対策
+            # APIレートリミット対策の微小ウェイト
             time.sleep(0.05)
 
 if __name__ == "__main__":
