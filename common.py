@@ -9,6 +9,7 @@ load_dotenv()
 WORKSPACE_ID = os.getenv('TWINMAKER_WORKSPACE_ID', 'MySmartBuildingWorkspace')
 REGION_NAME = os.getenv('AWS_DEFAULT_REGION', 'ap-northeast-1')
 YAML_FILE = os.getenv('INPUT_FILE', 'data/buildingA.yaml')
+CSV_FILE_PATH = os.getenv('CSV_FILE_PATH', 'data/point_list_building_A.csv')
 
 # AWS Client
 tm = boto3.client('iottwinmaker', region_name=REGION_NAME)
